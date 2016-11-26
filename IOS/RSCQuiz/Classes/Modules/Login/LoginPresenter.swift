@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import FBSDKCoreKit
+import FBSDKLoginKit
+import ObjectMapper
 
 class LoginPresenter {
     
@@ -26,6 +29,7 @@ class LoginPresenter {
 extension LoginPresenter: LoginPresenterInterface {
     
     func login(token: String) {
+        UserDefaultsHelper.facebookToken = token
         userStore?.login(token: token, completion: { [weak self] (response) in
             if let _self = self {
                 switch response {
@@ -37,5 +41,30 @@ extension LoginPresenter: LoginPresenterInterface {
                 }
             }
         })
+    }
+    
+    func downloadUserData() {
+        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
+        FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) in
+            if error != nil {
+                self.view?.onDownloadUserData()
+                return
+            }
+            let user = Mapper<User>().map(JSONObject: result)
+            
+            print(user!.imageUrl!)
+            self.userStore?.downloadFBPicture(url: user!.imageUrl!, completion: { (response) in
+                switch response {
+                case .success(let value):
+                    if let data = value {
+                        user?.imageData = data
+                    }
+                case .failure(_):
+                    break
+                }
+                UserDefaultsHelper.currentUser = user
+                self.view?.onDownloadUserData()
+            })
+        }
     }
 }

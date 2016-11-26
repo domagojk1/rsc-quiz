@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FCF46F61DE9F53E003A820F /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */; };
+		4FCF46F81DE9FEE5003A820F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F71DE9FEE5003A820F /* User.swift */; };
 		4FD7CCB61DE9CD3F004B239A /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB51DE9CD3F004B239A /* UserStore.swift */; };
 		4FD7CCB81DE9CD52004B239A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB71DE9CD52004B239A /* API.swift */; };
 		4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB91DE9CE16004B239A /* APIResponse.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		4FCF46F71DE9FEE5003A820F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4FD7CCB51DE9CD3F004B239A /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		4FD7CCB71DE9CD52004B239A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4FD7CCB91DE9CE16004B239A /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				4FD7CCD71DE9E6A4004B239A /* Quiz.swift */,
+				4FCF46F71DE9FEE5003A820F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				4FD7CCB61DE9CD3F004B239A /* UserStore.swift in Sources */,
 				4FF288301DE9969C006273C2 /* LoginViewController.swift in Sources */,
 				4FD7CCD81DE9E6A4004B239A /* Quiz.swift in Sources */,
+				4FCF46F81DE9FEE5003A820F /* User.swift in Sources */,
 				4FD7CCBE1DE9D24B004B239A /* LoginPresenter.swift in Sources */,
 				4FD7CCBC1DE9CE88004B239A /* LoginResponse.swift in Sources */,
 				4FD7CCB81DE9CD52004B239A /* API.swift in Sources */,

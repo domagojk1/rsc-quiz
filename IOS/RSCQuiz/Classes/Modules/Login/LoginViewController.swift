@@ -12,9 +12,9 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var view1: UIView!
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var googleLoginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var presenter: LoginPresenterInterface?
     
@@ -34,6 +34,8 @@ class LoginViewController: UIViewController {
     
     public func didTapFacebookLoginButton() {
         facebookButton.sendActions(for: .touchUpInside)
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
     }
     
     public func didTapGoogleLoginButton() {
@@ -43,6 +45,7 @@ class LoginViewController: UIViewController {
     // MARK: - Private methods
     
     private func initializeUI() {
+        activityIndicator.isHidden = true
         facebookButton.delegate = self
         facebookLoginButton.addTarget(self, action: #selector(didTapFacebookLoginButton), for: .touchUpInside)
         googleLoginButton.addTarget(self, action: #selector(didTapGoogleLoginButton), for: .touchUpInside)
@@ -53,11 +56,17 @@ extension LoginViewController: LoginViewDelegate {
     
     func onLoginSuccess() {
         print("Login successful.")
-        performSegue(withIdentifier: "openApplication", sender: self)
+        presenter?.downloadUserData()
     }
     
     func onLoginFailure() {
         print("Login failure.")
+    }
+    
+    func onDownloadUserData() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        performSegue(withIdentifier: "openApplication", sender: self)
     }
 }
 

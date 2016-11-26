@@ -32,4 +32,18 @@ class UserStore {
                 }
             }
     }
+    
+    func downloadFBPicture(url: String, completion: @escaping (APIResponse<Data?>) -> ()) {
+        Alamofire
+            .request(URL(fileURLWithPath: url))
+            .response { (response) in
+                if let data = response.data {
+                    print("Image download success")
+                    completion(.success(data))
+                } else {
+                    print("Image download failed")
+                    completion(.failure("Error"))
+                }
+        }
+    }
 }

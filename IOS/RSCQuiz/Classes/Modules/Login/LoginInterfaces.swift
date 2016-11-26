@@ -12,10 +12,12 @@ protocol LoginViewDelegate: class {
     
     func onLoginSuccess()
     func onLoginFailure()
+    func onDownloadUserData()
 }
 
 protocol LoginPresenterInterface: class {
     
     func login(token: String)
+    func downloadUserData()
 }
 

@@ -44,7 +44,6 @@ class QuizListViewController: UIViewController {
         quizList.append(quiz5)
         quizListTableView.reloadData()
     }
-
 }
 
 extension QuizListViewController: UITableViewDelegate {

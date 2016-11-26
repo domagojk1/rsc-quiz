@@ -13,10 +13,16 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let user = UserDefaultsHelper.currentUser
+        if let data = user?.imageData {
+            userImageView.image = UIImage(data: data)
+        }
+        userNameLabel.text = user?.name!
     }
     @IBAction func didTapLogoutButton(_ sender: UIBarButtonItem) {
         logout()
