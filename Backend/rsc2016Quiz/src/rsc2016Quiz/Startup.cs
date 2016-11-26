@@ -92,6 +92,11 @@ namespace rsc2016Quiz
 
             #endregion
 
+            services.AddSignalR(options =>
+            {
+                options.Hubs.EnableDetailedErrors = true;
+            });
+
             #region Services
 
             services.AddScoped<IOAuthHandler, OAuthHandler>();
@@ -198,6 +203,9 @@ namespace rsc2016Quiz
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+            app.UseWebSockets();
+            app.UseSignalR();
         }
     }
 }
