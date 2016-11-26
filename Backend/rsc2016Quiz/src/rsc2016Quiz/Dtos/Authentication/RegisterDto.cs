@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace rsc2016Quiz.Dtos
+namespace rsc2016Quiz.Dtos.Authentication
 {
-    public class LoginDto
+    public class RegisterDto
     {
-        [Required]
+        [Required, MaxLength(256)]
         public string Username { get; set; }
 
         [Required]

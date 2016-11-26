@@ -1,4 +1,4 @@
-﻿namespace rsc2016Quiz.Dtos
+﻿namespace rsc2016Quiz.Dtos.Authentication
 {
     public class TokenDto
     {

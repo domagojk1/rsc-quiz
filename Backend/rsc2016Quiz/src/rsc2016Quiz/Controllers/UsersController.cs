@@ -1,7 +1,12 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using rsc2016Quiz.Dtos;
+using rsc2016Quiz.Dtos.Authentication;
+using rsc2016Quiz.Helpers;
+using rsc2016Quiz.Helpers.ResultModels;
 using rsc2016Quiz.Services;
+using rsc2016Quiz.Services.Interfaces;
 
 namespace rsc2016Quiz.Controllers
 {
@@ -9,23 +14,30 @@ namespace rsc2016Quiz.Controllers
     public class UsersController : Controller
     {
         private readonly IOAuthHandler _authHandler;
+        private readonly IMembershipService _membershipService;
+        private readonly IApiErrorHandler _apiErrorHandler;
 
-        public UsersController(IOAuthHandler authHandler)
+        public UsersController(IOAuthHandler authHandler, IMembershipService membershipService, IApiErrorHandler apiErrorHandler)
         {
             _authHandler = authHandler;
+            _membershipService = membershipService;
+            _apiErrorHandler = apiErrorHandler;
         }
 
         [HttpPost("login")]
-        //    [Produces(typeof(TokenDto))]
+        [Produces(typeof(TokenDto))]
         public async Task<IActionResult> Login([FromBody] FbToken fbtoken)
         {
 
             var result = await _authHandler.VerifyFacebookAccessToken(fbtoken.Token);
-            if (result)
+            
+            if (result!=null)
             {
-                return Ok("true");
+               var token = await _membershipService.LoginToken(result);
+                return Ok(Mapper.Map<TokenDto>(token));
             }
-            return Ok("false");
+            return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Invalid data")));
+            
         }
 
 

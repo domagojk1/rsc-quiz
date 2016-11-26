@@ -14,8 +14,14 @@ using rsc2016Quiz.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using rsc2016Quiz.Dtos;
+using rsc2016Quiz.Dtos.Authentication;
 using rsc2016Quiz.Helpers;
+using rsc2016Quiz.Helpers.ResultModels;
+using rsc2016Quiz.Middleware;
+using rsc2016Quiz.Repository;
 using rsc2016Quiz.Services;
+using rsc2016Quiz.Services.Interfaces;
 
 namespace rsc2016Quiz
 {
@@ -89,6 +95,10 @@ namespace rsc2016Quiz
             #region Services
 
             services.AddScoped<IOAuthHandler, OAuthHandler>();
+            services.AddScoped<IMembershipService, MembershipService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<IApiErrorHandler, ApiErrorHandler>();
 
             #endregion
 
@@ -131,6 +141,14 @@ namespace rsc2016Quiz
            //     app.UseBrowserLink();
             }
 
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
+                AppId = "552017744992396",
+                AppSecret = "71738ff00bc9ff5932bed560ddbd9c10",
+                Scope = { "email" }
+            });
+
+
             #region Tokens
 
             var tokenValidationParametars = new TokenValidationParameters
@@ -167,10 +185,14 @@ namespace rsc2016Quiz
 
             Mapper.Initialize(config =>
             {
-     
+                config.CreateMap<TokenDto, UserTokenResult>().ReverseMap();
+                config.CreateMap<ErrorMessageDto, UserTokenResult>().ReverseMap();
+                config.CreateMap<ErrorMessageDto, Result>().ReverseMap();
+                config.CreateMap<ErrorMessageDto, ErrorList>().ReverseMap();
+                config.CreateMap<FilePathDto, FileResult>().ReverseMap();
             });
 
-
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
