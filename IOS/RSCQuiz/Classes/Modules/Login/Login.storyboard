@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,11 +20,122 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FgA-X5-v5i">
+                                <rect key="frame" x="16" y="451" width="343" height="184"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwi-ak-xI3">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dh-fx-VwV">
+                                        <rect key="frame" x="0.0" y="72" width="343" height="40"/>
+                                        <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="DQL-Ty-tcD"/>
+                                        </constraints>
+                                        <state key="normal" title="Facebook">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-TC-YpA">
+                                        <rect key="frame" x="0.0" y="144" width="343" height="40"/>
+                                        <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Google">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSC Quiz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-9C-3J3">
+                                <rect key="frame" x="120" y="68" width="134" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FgA-X5-v5i" secondAttribute="bottom" constant="32" id="Jbg-JE-hHx"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q1q-0k-lYP"/>
+                            <constraint firstItem="bcW-9C-3J3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="cZd-oT-J5a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FgA-X5-v5i" secondAttribute="trailing" id="g5T-Dd-qSs"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="FgA-X5-v5i" secondAttribute="leading" id="lCS-dm-Lez"/>
+                            <constraint firstItem="bcW-9C-3J3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="toT-U3-g4x"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="facebookLoginButton" destination="9dh-fx-VwV" id="1hB-qm-lgV"/>
+                        <outlet property="googleLoginButton" destination="mBB-TC-YpA" id="MTx-AZ-oBJ"/>
+                        <outlet property="view1" destination="Dwi-ak-xI3" id="1kh-wD-vpZ"/>
+                        <segue destination="ZLn-9r-Lf5" kind="show" identifier="openApplication" id="7Vu-l6-R5K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="25" y="123"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9vs-dv-3sg">
+            <objects>
+                <tabBarController id="ZLn-9r-Lf5" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Wav-Fc-aeW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Cb6-4T-Q7t" kind="relationship" relationship="viewControllers" id="X6I-z0-evb"/>
+                        <segue destination="Ubd-GZ-o1y" kind="relationship" relationship="viewControllers" id="UXg-lX-Oeq"/>
+                        <segue destination="bYh-pj-tRs" kind="relationship" relationship="viewControllers" id="12w-L2-dpi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zLM-BC-kdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="974" y="123"/>
+        </scene>
+        <!--QuizList-->
+        <scene sceneID="ARL-6O-fbQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QuizList" id="Cb6-4T-Q7t" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="IQButtonBarArrowDown.png" id="IoV-y4-odh"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnC-R1-iQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850" y="-148"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="Eq5-1L-0l7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="History" id="Ubd-GZ-o1y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RFH-iA-nLv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ga-hg-f1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="122"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="WLU-Xr-qCv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="bYh-pj-tRs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Vo3-jt-SxY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVW-Sx-7bL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="341"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IQButtonBarArrowDown.png" width="21" height="12"/>
+    </resources>
 </document>
