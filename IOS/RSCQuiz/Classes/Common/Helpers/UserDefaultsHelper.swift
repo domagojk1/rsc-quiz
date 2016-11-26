@@ -9,12 +9,12 @@
 import Foundation
 
 class UserDefaultsHelper {
-        
+    
     static var currentUser: User? {
         get {
             let defaults = UserDefaults.standard
             if let data = defaults.object(forKey: "user") {
-                return NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! User
+                return NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as? User
             }
             return nil
         }

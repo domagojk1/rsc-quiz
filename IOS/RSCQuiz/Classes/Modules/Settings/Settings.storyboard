@@ -33,6 +33,11 @@
                                                     <constraint firstAttribute="width" secondItem="cKP-IQ-hEH" secondAttribute="height" multiplier="1:1" id="W0H-1b-Map"/>
                                                     <constraint firstAttribute="width" constant="128" id="wAs-ba-3Hd"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="64"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,6 +113,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="logoutButton" destination="XG4-PD-Ce4" id="R45-oJ-3Wc"/>
+                        <outlet property="userEmailLabel" destination="bv6-g3-a3a" id="uvz-1Z-ZiF"/>
                         <outlet property="userImageView" destination="cKP-IQ-hEH" id="3dM-0o-ukf"/>
                         <outlet property="userNameLabel" destination="shM-k6-qTx" id="4cq-tN-TfK"/>
                     </connections>

@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     
     var facebookButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
-        button.readPermissions = ["public_profile"]
+        button.readPermissions = ["public_profile", "email"]
         return button
     }()
     

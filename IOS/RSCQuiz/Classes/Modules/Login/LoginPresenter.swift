@@ -56,9 +56,7 @@ extension LoginPresenter: LoginPresenterInterface {
             self.userStore?.downloadFBPicture(url: user!.imageUrl!, completion: { (response) in
                 switch response {
                 case .success(let value):
-                    if let data = value {
-                        user?.imageData = data
-                    }
+                    user?.imageData = UIImagePNGRepresentation(value)
                 case .failure(_):
                     break
                 }

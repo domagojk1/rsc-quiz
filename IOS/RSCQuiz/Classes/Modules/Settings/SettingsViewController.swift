@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
+    @IBOutlet weak var userEmailLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         let user = UserDefaultsHelper.currentUser
@@ -23,6 +24,7 @@ class SettingsViewController: UIViewController {
             userImageView.image = UIImage(data: data)
         }
         userNameLabel.text = user?.name!
+        userEmailLabel.text = user?.email!
     }
     @IBAction func didTapLogoutButton(_ sender: UIBarButtonItem) {
         logout()

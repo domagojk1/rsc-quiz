@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import ObjectMapper
 
 class UserStore {
@@ -33,16 +34,14 @@ class UserStore {
             }
     }
     
-    func downloadFBPicture(url: String, completion: @escaping (APIResponse<Data?>) -> ()) {
+    func downloadFBPicture(url: String, completion: @escaping (APIResponse<Image>) -> ()) {
         Alamofire
-            .request(URL(fileURLWithPath: url))
-            .response { (response) in
-                if let data = response.data {
-                    print("Image download success")
-                    completion(.success(data))
+            .request(url)
+            .responseImage { response in
+                if let image = response.result.value {
+                    completion(.success(image))
                 } else {
-                    print("Image download failed")
-                    completion(.failure("Error"))
+                    completion(.failure("Greška"))
                 }
         }
     }
