@@ -104,6 +104,8 @@ namespace rsc2016Quiz
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEncryptionService, EncryptionService>();
             services.AddScoped<IApiErrorHandler, ApiErrorHandler>();
+            services.AddScoped<IEventRepository, EventRepository>();
+            
 
             #endregion
 
@@ -195,6 +197,7 @@ namespace rsc2016Quiz
                 config.CreateMap<ErrorMessageDto, Result>().ReverseMap();
                 config.CreateMap<ErrorMessageDto, ErrorList>().ReverseMap();
                 config.CreateMap<FilePathDto, FileResult>().ReverseMap();
+                config.CreateMap<EventDto, Event>().ReverseMap();
             });
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
