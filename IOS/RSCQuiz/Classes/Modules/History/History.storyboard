@@ -27,11 +27,13 @@
             </objects>
             <point key="canvasLocation" x="1520.8" y="-172.26386806596702"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--History-->
         <scene sceneID="VWV-kq-kPb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uOr-g6-vOO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="History" id="Q1c-Bw-Qku"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="v9h-5G-vI5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -46,4 +48,7 @@
             <point key="canvasLocation" x="581.60000000000002" y="-172.26386806596702"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="History" width="25" height="25"/>
+    </resources>
 </document>

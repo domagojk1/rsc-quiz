@@ -17,6 +17,10 @@ class LoginPresenter {
         self.view = view
         self.userStore = userStore
     }
+    
+    fileprivate func saveLognCredentials(token: String, tokenExpires: Int) {
+        UserDefaultsHelper.userToken = token
+    }
 }
 
 extension LoginPresenter: LoginPresenterInterface {
@@ -25,8 +29,9 @@ extension LoginPresenter: LoginPresenterInterface {
         userStore?.login(token: token, completion: { [weak self] (response) in
             if let _self = self {
                 switch response {
-                case .success(_):
+                case .success(let response):
                     _self.view?.onLoginSuccess()
+                    _self.saveLognCredentials(token: response.token!, tokenExpires: response.tokenExpires!)
                 case .failure(_):
                     _self.view?.onLoginFailure()
                 }

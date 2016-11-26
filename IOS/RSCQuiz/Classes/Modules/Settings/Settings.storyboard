@@ -36,11 +36,13 @@
             </objects>
             <point key="canvasLocation" x="1456.8" y="-246.02698650674665"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="gH3-tw-bin">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Ad-SH-BCX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="1ib-8z-IBM"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0DZ-R6-oSw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -55,4 +57,7 @@
             <point key="canvasLocation" x="517.60000000000002" y="-246.02698650674665"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Settings" width="25" height="25"/>
+    </resources>
 </document>

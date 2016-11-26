@@ -12,14 +12,23 @@ import ObjectMapper
 
 class UserStore {
     
-    func login(token: String, completion: @escaping (APIResponse<Bool>) -> ()){
+    func login(token: String, completion: @escaping (APIResponse<LoginResponse>) -> ()){
         Alamofire
-            .request(API.User.loginUrl, method: .post, parameters: ["token": token], encoding: JSONEncoding.default)
+            .request(API.User.loginUrl,
+                     method: .post,
+                     parameters: ["token": token],
+                     encoding: JSONEncoding.default)
             .responseJSON { (dataResponse) in
-                if dataResponse.response?.statusCode == 200 {
-                    completion(.success(true))
-                } else {
-                    completion(.failure("Greška"))
+                switch dataResponse.result {
+                case .success(let value):
+                    let loginResponse = Mapper<LoginResponse>().map(JSONObject: value)
+                    if let response = loginResponse {
+                        completion(.success(response))
+                    } else {
+                        completion(.failure("Greška"))
+                    }
+                case .failure(let error):
+                    completion(.failure(error.localizedDescription))
                 }
             }
     }

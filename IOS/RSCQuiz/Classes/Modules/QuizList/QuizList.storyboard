@@ -5,13 +5,15 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Quiz List-->
         <scene sceneID="Uh4-CY-165">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xag-Vv-yDE" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xag-Vv-yDE" customClass="QuizListViewController" customModule="RSCQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A6j-Fg-tk1"/>
                         <viewControllerLayoutGuide type="bottom" id="Lef-t0-yJn"/>
@@ -20,9 +22,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-KS-FYS">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-KS-FYS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuizListTableViewCell" id="tNV-a5-4ho" customClass="QuizListTableViewCell" customModule="RSCQuiz" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tNV-a5-4ho" id="COM-hN-r4t">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-JH-Kvp">
+                                                    <rect key="frame" x="16" y="32" width="16" height="16"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="cn0-22-T1s"/>
+                                                        <constraint firstAttribute="width" secondItem="wBi-JH-Kvp" secondAttribute="height" multiplier="1:1" id="fpT-KR-4RW"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RXx-Rk-HzF">
+                                                    <rect key="frame" x="48" y="17.5" width="311" height="45"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-En-SJo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="311" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-gz-VWh">
+                                                            <rect key="frame" x="0.0" y="28" width="311" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RXx-Rk-HzF" firstAttribute="leading" secondItem="wBi-JH-Kvp" secondAttribute="trailing" constant="16" id="926-o3-XJv"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="wBi-JH-Kvp" secondAttribute="leading" constant="-8" id="RIp-M5-sLc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RXx-Rk-HzF" secondAttribute="trailing" constant="8" id="d9q-gT-Vdm"/>
+                                                <constraint firstItem="RXx-Rk-HzF" firstAttribute="centerY" secondItem="COM-hN-r4t" secondAttribute="centerY" id="hmH-Zk-MS0"/>
+                                                <constraint firstItem="wBi-JH-Kvp" firstAttribute="centerY" secondItem="COM-hN-r4t" secondAttribute="centerY" id="wiA-hE-0tf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkView" destination="wBi-JH-Kvp" id="ESS-JF-hVt"/>
+                                            <outlet property="descriptionLabel" destination="fYd-gz-VWh" id="kda-2q-sC8"/>
+                                            <outlet property="nameLabel" destination="50z-En-SJo" id="rUJ-fQ-Fpz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,21 +92,30 @@
                     <navigationItem key="navigationItem" title="Quiz List" id="xQP-Fo-sIO">
                         <barButtonItem key="backBarButtonItem" title="Back" id="KZw-rh-Qco"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="quizListTableView" destination="EEk-KS-FYS" id="F2Z-CW-LGR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4F-8z-P5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1388" y="-271.21439280359823"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Quiz List-->
         <scene sceneID="014-E5-0H8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VvH-kB-Aah" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Quiz List" image="QuizList" id="miq-3C-6Hn"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AH9-Eo-QW2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="DuI-fy-245">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="xag-Vv-yDE" kind="relationship" relationship="rootViewController" id="P1E-iq-Htt"/>
                     </connections>
@@ -60,4 +125,7 @@
             <point key="canvasLocation" x="448.80000000000001" y="-271.21439280359823"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="QuizList" width="12" height="12"/>
+    </resources>
 </document>

@@ -58,7 +58,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSC Quiz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-9C-3J3">
-                                <rect key="frame" x="120" y="68" width="134" height="39"/>
+                                <rect key="frame" x="120" y="68" width="134" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
         <scene sceneID="ARL-6O-fbQ">
             <objects>
                 <viewControllerPlaceholder storyboardName="QuizList" id="Cb6-4T-Q7t" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="IQButtonBarArrowDown.png" id="IoV-y4-odh"/>
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="QuizList" id="IoV-y4-odh"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cnC-R1-iQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,6 +136,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IQButtonBarArrowDown.png" width="21" height="12"/>
+        <image name="QuizList" width="12" height="12"/>
     </resources>
 </document>

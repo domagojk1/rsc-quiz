@@ -12,6 +12,7 @@ import ObjectMapper
 class LoginResponse {
     
     var token: String?
+    var tokenExpires: Int?
     
     required init?(map: Map) { }
 }
@@ -20,5 +21,6 @@ extension LoginResponse: Mappable {
     
     func mapping(map: Map) {
         token <- map["token"]
+        tokenExpires <- map["tokenExpires"]
     }
 }

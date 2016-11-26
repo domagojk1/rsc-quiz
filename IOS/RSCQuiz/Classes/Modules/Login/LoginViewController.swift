@@ -66,7 +66,7 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if let result = result {
             if let token = result.token {
-                presenter?.login(token: token.userID!)
+                presenter?.login(token: token.tokenString!)
             } else {
                 onLoginFailure()
             }
