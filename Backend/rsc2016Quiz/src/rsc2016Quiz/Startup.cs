@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +14,8 @@ using rsc2016Quiz.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using rsc2016Quiz.Helpers;
+using rsc2016Quiz.Services;
 
 namespace rsc2016Quiz
 {
@@ -87,6 +86,12 @@ namespace rsc2016Quiz
 
             #endregion
 
+            #region Services
+
+            services.AddScoped<IOAuthHandler, OAuthHandler>();
+
+            #endregion
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<RscContext>();
 
@@ -119,6 +124,12 @@ namespace rsc2016Quiz
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+           //     app.UseBrowserLink();
+            }
 
             #region Tokens
 
