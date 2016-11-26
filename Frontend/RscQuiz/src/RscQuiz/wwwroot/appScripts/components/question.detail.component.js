@@ -9,31 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var quiz_component_1 = require('./quiz.component');
-var quiz_detail_component_1 = require('./quiz.detail.component');
+var question_1 = require('../classes/question');
 var quiz_service_1 = require('../services/quiz.service');
-var QuizesComponent = (function () {
-    function QuizesComponent(quizService) {
+var QuestionDetailComponent = (function () {
+    function QuestionDetailComponent(quizService) {
         this.quizService = quizService;
     }
-    QuizesComponent.prototype.getQuizes = function () {
-        return this.quizService.getQuizes();
+    QuestionDetailComponent.prototype.closeQuestion = function () {
+        this.quizService.setCurrentQuestion(null);
     };
-    QuizesComponent.prototype.getCurrentQuiz = function () {
-        return this.quizService.getCurrentQuiz();
-    };
-    QuizesComponent.prototype.openQuiz = function (quiz) {
-        this.quizService.setCurrentQuiz(quiz);
-    };
-    QuizesComponent = __decorate([
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', question_1.Question)
+    ], QuestionDetailComponent.prototype, "question", void 0);
+    QuestionDetailComponent = __decorate([
         core_1.Component({
-            selector: 'quizes',
-            directives: [quiz_component_1.QuizComponent, quiz_detail_component_1.QuizDetailComponent],
-            templateUrl: '../views/quizes.component.html'
+            selector: 'question-detail',
+            templateUrl: '../views/question.detail.component.html'
         }), 
         __metadata('design:paramtypes', [quiz_service_1.QuizService])
-    ], QuizesComponent);
-    return QuizesComponent;
+    ], QuestionDetailComponent);
+    return QuestionDetailComponent;
 }());
-exports.QuizesComponent = QuizesComponent;
-//# sourceMappingURL=quizes.component.js.map
+exports.QuestionDetailComponent = QuestionDetailComponent;
+//# sourceMappingURL=question.detail.component.js.map

@@ -12,15 +12,18 @@ import { CookieService } from 'angular2-cookie/core';
 import { GenericService} from '../services/generic.service';
 import { LoginService} from '../services/login.service';
 import { SessionService } from '../services/session.service';
+import { QuizService } from '../services/quiz.service';
 import { ModalConfirmService } from '../services/modal.confirm.service';
 import { ModalConfirmComponent } from './modal.confirm.component';
+import { NewQuizComponent } from './new.quiz.component';
+
 
 @Component({
     selector: 'my-app',
     directives: [ROUTER_DIRECTIVES],
     templateUrl: '../views/app.component.html',
-    precompile: [QuizesComponent, LoginComponent, RegisterComponent, HomeComponent, UserComponent, FacebookLoginComponent, GoogleLoginComponent],
-    providers: [UserService, CookieService, GenericService, LoginService, SessionService, ModalConfirmService]
+    precompile: [QuizesComponent, LoginComponent, RegisterComponent, HomeComponent, UserComponent, FacebookLoginComponent, GoogleLoginComponent, NewQuizComponent],
+    providers: [UserService, CookieService, GenericService, LoginService, SessionService, ModalConfirmService, QuizService]
 })
 export class AppComponent {
     constructor(private userService: UserService, private sessionService: SessionService) {

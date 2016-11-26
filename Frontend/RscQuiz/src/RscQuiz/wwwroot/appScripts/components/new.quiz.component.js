@@ -12,28 +12,32 @@ var core_1 = require('@angular/core');
 var quiz_component_1 = require('./quiz.component');
 var quiz_detail_component_1 = require('./quiz.detail.component');
 var quiz_service_1 = require('../services/quiz.service');
-var QuizesComponent = (function () {
-    function QuizesComponent(quizService) {
+var quiz_1 = require('../classes/quiz');
+var NewQuizComponent = (function () {
+    function NewQuizComponent(quizService) {
         this.quizService = quizService;
+        this.quiz = new quiz_1.Quiz();
     }
-    QuizesComponent.prototype.getQuizes = function () {
-        return this.quizService.getQuizes();
+    NewQuizComponent.prototype.addNewQuiz = function () {
+        var successError = {
+            onSuccess: function (data) {
+                if (data.status) {
+                    console.log("added new quiz");
+                }
+            },
+            onError: function (error) { return successError.onError(error); }
+        };
+        this.quizService.addNewQuiz(this.quiz, successError);
     };
-    QuizesComponent.prototype.getCurrentQuiz = function () {
-        return this.quizService.getCurrentQuiz();
-    };
-    QuizesComponent.prototype.openQuiz = function (quiz) {
-        this.quizService.setCurrentQuiz(quiz);
-    };
-    QuizesComponent = __decorate([
+    NewQuizComponent = __decorate([
         core_1.Component({
-            selector: 'quizes',
+            selector: 'new-quiz',
             directives: [quiz_component_1.QuizComponent, quiz_detail_component_1.QuizDetailComponent],
-            templateUrl: '../views/quizes.component.html'
+            templateUrl: '../views/new.quiz.component.html'
         }), 
         __metadata('design:paramtypes', [quiz_service_1.QuizService])
-    ], QuizesComponent);
-    return QuizesComponent;
+    ], NewQuizComponent);
+    return NewQuizComponent;
 }());
-exports.QuizesComponent = QuizesComponent;
-//# sourceMappingURL=quizes.component.js.map
+exports.NewQuizComponent = NewQuizComponent;
+//# sourceMappingURL=new.quiz.component.js.map

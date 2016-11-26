@@ -44,7 +44,7 @@ var SessionService = (function () {
         if (this.userService.isLoggedIn()) {
             if (this.workingInterval == 0 ||
                 (currentTime.valueOf() - this.lastCheckedTime.valueOf() < this.workingInterval
-                    && currentTime.valueOf() - this.lastCheckedTime.valueOf() >= this.workingInterval * 0.4)) {
+                    && currentTime.valueOf() - this.lastCheckedTime.valueOf() >= this.workingInterval * 0.9)) {
                 this.refreshToken(genericService);
                 this.lastCheckedTime = currentTime;
             }

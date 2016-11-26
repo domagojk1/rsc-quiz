@@ -1,0 +1,36 @@
+﻿<p>Quiz ID: {{quiz.id}}</p>
+<p>Name: {{quiz.name}}</p>
+<p>Description: {{quiz.description}}</p>
+<form role="form">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="quiz.name">
+    </div>
+    <div class="form-group">
+        <label for="editorDescription">Description:</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="quiz.description">
+    </div>
+    <div class="form-group">
+        <label for="editorDescription">Date:</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="quiz.date">
+    </div>
+    <div class="form-group">
+        <label for="editorDescription">Max members per team:</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="quiz.maxMembersPerTeam">
+    </div>
+    <button *ngIf="isEditing() == false" type="submit" (click)="add()" class="btn btn-success">Add</button>
+    <template [ngIf]="isEditing()">
+        <button *ngIf="getEditNode().isTemp" type="submit" (click)="edit()" class="btn btn-success">Save</button>
+        <button type="submit" (click)="delete()" class="btn btn-danger">Delete</button>
+    </template>
+    <template [ngIf]="getEditNode().isTemp">
+        <span class="pull-right">
+            <button type="submit" (click)="publish()" class="btn btn-primary">Publish</button>
+            <button *ngIf="getEditNode().nodeId" type="submit" (click)="discard()" class="btn btn-danger">Discard changes</button>
+        </span>
+    </template>
+    <template [ngIf]="getEditNode().isTemp == false && isEditing()">
+        <button type="submit" (click)="checkout()" class="btn btn-success">Checkout</button>
+        <button type="submit" (click)="publishAll()" class="btn btn-primary pull-right">Publish all</button>
+    </template>
+</form>

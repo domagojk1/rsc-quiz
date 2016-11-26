@@ -1,4 +1,16 @@
 ﻿<div class="col-md-6 col-md-offset-3">
     <h2 class="text-center">Quizes</h2>
+    <template [ngIf]="getCurrentQuiz() == null">
+        <div class="list-group">
+            <template ngFor let-quiz [ngForOf]="getQuizes()">
+                <a href="#/quizes" class="list-group-item list-group-item-action" (click)="openQuiz(quiz)">
+                    <quiz [quiz]="quiz"></quiz>
+                </a>
+            </template>
+        </div>
+    </template>
+    <template [ngIf]="getCurrentQuiz() != null">
+        <quiz-detail [quiz]="getCurrentQuiz()"></quiz-detail>
+    </template>
 </div>
 

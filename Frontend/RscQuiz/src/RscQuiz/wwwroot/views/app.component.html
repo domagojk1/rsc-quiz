@@ -5,17 +5,18 @@
         </div>
         <ul class="nav navbar-nav navbar-left">
             <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
-            <template [ngIf]="userService.isLoggedIn()">
-                <li><a [routerLink]="['/places']" routerLinkActive="active">Moderate quizes</a></li>
+            <template [ngIf]="userService.isLoggedIn() || true">
+                <li><a [routerLink]="['/quizes']" routerLinkActive="active">Moderate quizes</a></li>
+                <li><a [routerLink]="['/new-quiz']" routerLinkActive="active">Add quiz</a></li>
             </template>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <template [ngIf]="userService.isLoggedIn() == false">
                 <li><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-                <li><a [routerLink]="['/register']" routerLinkActive="active">Register</a></li>
+                <!--li><a [routerLink]="['/register']" routerLinkActive="active">Register</a></li-->
             </template>
             <template [ngIf]="userService.isLoggedIn()">
-                <li><a [routerLink]="['/user']" routerLinkActive="active">{{userService.user.username}}</a></li>
+                <!--li><a [routerLink]="['/user']" routerLinkActive="active">{{userService.user.username}}</a></li-->
                 <li><a href="#login" (click)="userService.logout()">Logout</a></li>
             </template>
         </ul>

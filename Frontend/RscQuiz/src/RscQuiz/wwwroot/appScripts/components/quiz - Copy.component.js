@@ -27,4 +27,4 @@ var QuizComponent = (function () {
     return QuizComponent;
 }());
 exports.QuizComponent = QuizComponent;
-//# sourceMappingURL=quiz.component.js.map
+//# sourceMappingURL=quiz - Copy.component.js.map

@@ -22,7 +22,9 @@ var core_2 = require('angular2-cookie/core');
 var generic_service_1 = require('../services/generic.service');
 var login_service_1 = require('../services/login.service');
 var session_service_1 = require('../services/session.service');
+var quiz_service_1 = require('../services/quiz.service');
 var modal_confirm_service_1 = require('../services/modal.confirm.service');
+var new_quiz_component_1 = require('./new.quiz.component');
 var AppComponent = (function () {
     function AppComponent(userService, sessionService) {
         this.userService = userService;
@@ -33,8 +35,8 @@ var AppComponent = (function () {
             selector: 'my-app',
             directives: [router_1.ROUTER_DIRECTIVES],
             templateUrl: '../views/app.component.html',
-            precompile: [quizes_component_1.QuizesComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent, user_component_1.UserComponent, facebook_login_component_1.FacebookLoginComponent, google_login_component_1.GoogleLoginComponent],
-            providers: [user_service_1.UserService, core_2.CookieService, generic_service_1.GenericService, login_service_1.LoginService, session_service_1.SessionService, modal_confirm_service_1.ModalConfirmService]
+            precompile: [quizes_component_1.QuizesComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, home_component_1.HomeComponent, user_component_1.UserComponent, facebook_login_component_1.FacebookLoginComponent, google_login_component_1.GoogleLoginComponent, new_quiz_component_1.NewQuizComponent],
+            providers: [user_service_1.UserService, core_2.CookieService, generic_service_1.GenericService, login_service_1.LoginService, session_service_1.SessionService, modal_confirm_service_1.ModalConfirmService, quiz_service_1.QuizService]
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService, session_service_1.SessionService])
     ], AppComponent);

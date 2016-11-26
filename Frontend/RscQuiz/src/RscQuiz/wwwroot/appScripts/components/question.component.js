@@ -9,22 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var quiz_1 = require('../classes/quiz');
-var QuizComponent = (function () {
-    function QuizComponent() {
+var question_1 = require('../classes/question');
+var QuestionComponent = (function () {
+    function QuestionComponent() {
     }
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', quiz_1.Quiz)
-    ], QuizComponent.prototype, "quiz", void 0);
-    QuizComponent = __decorate([
+        __metadata('design:type', question_1.Question)
+    ], QuestionComponent.prototype, "question", void 0);
+    QuestionComponent = __decorate([
         core_1.Component({
-            selector: 'quiz',
-            templateUrl: '../views/quiz.component.html'
+            selector: 'question',
+            templateUrl: '../views/question.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], QuizComponent);
-    return QuizComponent;
+    ], QuestionComponent);
+    return QuestionComponent;
 }());
-exports.QuizComponent = QuizComponent;
-//# sourceMappingURL=quiz.component.js.map
+exports.QuestionComponent = QuestionComponent;
+//# sourceMappingURL=question.component.js.map
