@@ -1,17 +1,14 @@
 package com.egzepsn.rsc.rscapp.modules.main.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.egzepsn.rsc.rscapp.R;
 import com.egzepsn.rsc.rscapp.app.RSCApp;
-import com.egzepsn.rsc.rscapp.commons.activity.view.ActivityView;
 import com.egzepsn.rsc.rscapp.commons.fragment.BaseFragment;
 import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
 import com.egzepsn.rsc.rscapp.modules.main.MainActivity;
@@ -20,9 +17,6 @@ import com.egzepsn.rsc.rscapp.modules.main.home.view.HomeView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import microsoft.aspnet.signalr.client.Platform;
-import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
-import retrofit2.http.Body;
 
 
 public class HomeFragment extends BaseFragment implements HomeView {

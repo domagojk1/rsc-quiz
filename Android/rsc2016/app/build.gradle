@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'android-apt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 25
@@ -47,15 +47,12 @@ dependencies {
     compile 'com.android.support:design:25.0.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.joanzapata.iconify:android-iconify-material:2.2.2'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.google.firebase:firebase-messaging:9.0.0'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.google.android.gms:play-services-auth:9.0.0'
+    compile 'com.edwardvanraak:MaterialBarcodeScanner:0.0.6-ALPHA'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile(name: 'signalr-client-sdk-android-release', ext: 'aar')
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-auth:9.0.0'
 }
-
-apply plugin: 'com.google.gms.google-services'

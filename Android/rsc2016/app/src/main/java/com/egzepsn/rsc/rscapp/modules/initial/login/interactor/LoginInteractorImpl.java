@@ -1,5 +1,6 @@
 package com.egzepsn.rsc.rscapp.modules.initial.login.interactor;
 
+import android.os.Bundle;
 import android.util.Log;
 
 import com.egzepsn.rsc.rscapp.app.RSCApp;
@@ -13,8 +14,13 @@ import com.egzepsn.rsc.rscapp.rest.ApiService;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,8 +35,33 @@ public class LoginInteractorImpl implements LoginInteractor {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 String token = loginResult.getAccessToken().getToken();
-                Log.d("ONSUCCESS", token);
                 sendToken(token);
+
+                final GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+
+                                try {
+                                    JSONObject jsonObject = response.getJSONObject();
+                                    User user = new User();
+                                    user.setUsername(jsonObject.getString("email"));
+                                    String profilePicUrl = jsonObject.getString("picture") + jsonObject.getString("data") + jsonObject.getString("url");
+                                    user.setUserPicture(profilePicUrl);
+                                    Log.d("USERPICT", user.getUserPicture());
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                        });
+
+                Bundle params = new Bundle();
+                params.putString("fields", "id,email,gender,cover,picture.type(large)");
+                request.setParameters(params);
+                request.executeAsync();
                 listener.onSuccess();
             }
 

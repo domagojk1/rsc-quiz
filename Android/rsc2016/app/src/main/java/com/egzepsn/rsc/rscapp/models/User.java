@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    @SerializedName("userPicture")
+    private String userPicture;
+
     @SerializedName("username")
     private String username;
 
@@ -14,6 +17,14 @@ public class User implements Serializable {
 
     @SerializedName("token")
     private String token;
+
+    public String getUserPicture() {
+        return userPicture;
+    }
+
+    public void setUserPicture(String userPicture) {
+        this.userPicture = userPicture;
+    }
 
     public String getUsername() {
         return username;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,26 +21,20 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class LoginFragment extends BaseFragment implements LoginView, GoogleApiClient.OnConnectionFailedListener {
+public class LoginFragment extends BaseFragment implements LoginView {
 
     @BindView(R.id.loader)
     ProgressBar progressBar;
 
     @BindView(R.id.button_facebook)
     LoginButton facebookButton;
-
-    @BindView(R.id.button_google)
-    SignInButton signInButton;
 
     private LoginPresenter presenter;
     private CallbackManager callbackManager;
@@ -53,7 +46,6 @@ public class LoginFragment extends BaseFragment implements LoginView, GoogleApiC
         if (token != null) {
             goToMain();
         }
-        //TODO: same for google
 
         View viewInflater = inflater.inflate(R.layout.login_fragment, container, false);
         setupParent(viewInflater);
@@ -67,17 +59,6 @@ public class LoginFragment extends BaseFragment implements LoginView, GoogleApiC
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this.getActivity())
-                .enableAutoManage(this.getActivity(), this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .build();
-
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-
         callbackManager = CallbackManager.Factory.create();
         facebookButton.setFragment(this);
         facebookButton.setOnClickListener(new View.OnClickListener() {
@@ -100,14 +81,6 @@ public class LoginFragment extends BaseFragment implements LoginView, GoogleApiC
     }
 
     @Override
-    public void resetMessage() {
-    }
-
-    @Override
-    public void showError(String error) {
-    }
-
-    @Override
     public void showLoadingIndicator() {
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -118,7 +91,7 @@ public class LoginFragment extends BaseFragment implements LoginView, GoogleApiC
     }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    public void resetMessage() {
     }
 
     private void goToMain() {

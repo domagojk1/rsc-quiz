@@ -3,6 +3,7 @@
     package="com.egzepsn.rsc.rscapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".app.RSCApp"
@@ -23,25 +24,6 @@
         <activity
             android:name=".modules.main.MainActivity"
             android:theme="@style/AppTheme"/>
-
-        <service android:name=".services.RSCFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <service android:name=".services.RSCFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@android:drawable/ic_popup_reminder" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@android:color/white" />
 
         <service android:enabled="true" android:name=".signalr.SignalRService" />
 
