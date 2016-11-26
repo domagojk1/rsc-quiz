@@ -8,6 +8,9 @@ import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
 import com.egzepsn.rsc.rscapp.modules.initial.login.LoginFragment;
 import com.egzepsn.rsc.rscapp.modules.main.MainActivity;
 import com.egzepsn.rsc.rscapp.modules.main.home.HomeFragment;
+import com.egzepsn.rsc.rscapp.modules.main.pages.HistoryFragment;
+import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
+import com.egzepsn.rsc.rscapp.modules.main.pages.SettingsFragment;
 
 
 public class Creator {
@@ -16,8 +19,12 @@ public class Creator {
         switch (fragmentEnum) {
             case LoginFragment:
                 return new LoginFragment();
-            case HomeFragment:
-                return new HomeFragment();
+            case QuizListFragment:
+                return new QuizListFragment();
+            case HistoryFragment:
+                return new HistoryFragment();
+            case SettingsFragment:
+                return new SettingsFragment();
             default:
                 return new LoginFragment();
         }

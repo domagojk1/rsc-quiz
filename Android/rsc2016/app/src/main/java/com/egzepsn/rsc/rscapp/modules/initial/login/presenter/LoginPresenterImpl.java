@@ -23,10 +23,10 @@ public class LoginPresenterImpl implements LoginPresenter, FinishedListener {
     }
 
     @Override
-    public void login(CallbackManager callbackManager, LoginButton button) {
+    public void loginFacebook(CallbackManager callbackManager, LoginButton button) {
         view.get().resetMessage();
         RSCApp.getInstance().setAppState(AppStateEnum.LoggingIn);
-        interactor.login(this, callbackManager, button);
+        interactor.loginFacebook(this, callbackManager, button);
     }
 
     @Override

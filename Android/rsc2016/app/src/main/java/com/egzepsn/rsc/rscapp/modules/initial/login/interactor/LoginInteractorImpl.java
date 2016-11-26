@@ -2,8 +2,12 @@ package com.egzepsn.rsc.rscapp.modules.initial.login.interactor;
 
 import android.util.Log;
 
+import com.egzepsn.rsc.rscapp.app.RSCApp;
 import com.egzepsn.rsc.rscapp.commons.listeners.FinishedListener;
+import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
+import com.egzepsn.rsc.rscapp.models.BaseReponse;
 import com.egzepsn.rsc.rscapp.models.LoginRequest;
+import com.egzepsn.rsc.rscapp.models.User;
 import com.egzepsn.rsc.rscapp.rest.ApiModule;
 import com.egzepsn.rsc.rscapp.rest.ApiService;
 import com.facebook.CallbackManager;
@@ -18,13 +22,14 @@ import retrofit2.Response;
 
 public class LoginInteractorImpl implements LoginInteractor {
     @Override
-    public void login(final FinishedListener listener, CallbackManager manager, LoginButton button) {
+    public void loginFacebook(final FinishedListener listener, CallbackManager manager, LoginButton button) {
         Log.d("INTERACTOR","LOGIN");
 
         button.registerCallback(manager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 String token = loginResult.getAccessToken().getToken();
+                Log.d("ONSUCCESS", token);
                 sendToken(token);
                 listener.onSuccess();
             }
@@ -43,16 +48,21 @@ public class LoginInteractorImpl implements LoginInteractor {
 
     private void sendToken(String token) {
         ApiService service = ApiModule.createService(ApiService.class);
-        Call<Boolean> call = service.login(new LoginRequest(token));
-        call.enqueue(new Callback<Boolean>() {
+        Call<BaseReponse> call = service.login(new LoginRequest(token));
+        Log.d("SEND","TOKEN");
+
+        call.enqueue(new Callback<BaseReponse>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Boolean result = response.body();
-                Log.d("ONRESPONSE", result + "");
+            public void onResponse(Call<BaseReponse> call, Response<BaseReponse> response) {
+                BaseReponse result = response.body();
+
+                if (result != null) {
+                    Log.d("ONRESPONSE", response.body().getToken() + "");
+                }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(Call<BaseReponse> call, Throwable t) {
                 Log.d("ONFAILURE", t.getMessage());
             }
         });

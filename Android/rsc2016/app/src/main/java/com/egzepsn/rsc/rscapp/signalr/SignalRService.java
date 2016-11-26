@@ -88,7 +88,7 @@ public class SignalRService extends Service {
             }
         };
 
-        String serverUrl = "http://rsc2016.azurewebsites.net";
+        String serverUrl = "http://rsc2016quiz.azurewebsites.net/";
         mHubConnection = new HubConnection(serverUrl);
         mHubConnection.setCredentials(credentials);
         String SERVER_HUB_CHAT = "PostsHub";

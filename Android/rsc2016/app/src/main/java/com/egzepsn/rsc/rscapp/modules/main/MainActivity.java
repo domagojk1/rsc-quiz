@@ -6,20 +6,20 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.egzepsn.rsc.rscapp.R;
 import com.egzepsn.rsc.rscapp.commons.activity.BaseActivity;
 import com.egzepsn.rsc.rscapp.enums.FragmentEnum;
-import com.egzepsn.rsc.rscapp.modules.main.home.HomeFragment;
+import com.egzepsn.rsc.rscapp.helpers.Creator;
+import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
+import com.egzepsn.rsc.rscapp.modules.main.pages.QuizPagerAdapter;
 import com.egzepsn.rsc.rscapp.signalr.SignalRService;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,12 +27,15 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+
     private final Context mContext = this;
     private SignalRService mService;
     private boolean mBound = false;
-
-    @BindView(R.id.fragment_container)
-    FrameLayout fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +43,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        if (fragmentContainer != null) {
-            // in case of saved state fragment is set
-            Fragment fragment = getSupportFragmentManager().findFragmentByTag(HomeFragment.class.getName());
-            List<Fragment> fragments = getSupportFragmentManager().getFragments();
-            for (Fragment fragment1 : (fragments != null ? fragments : new ArrayList<Fragment>())) {
-                String fragment1Tag = fragment1.getTag();
-                String fragmentTag = HomeFragment.class.getName();
-                if (fragment1Tag == fragmentTag) {
-                    return;
-                }
-            }
-            //if (savedInstanceState != null) {
-            if (fragment != null) {
-                return;
-            }
-            showFragment(FragmentEnum.HomeFragment, false);
-        }
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
 
         Intent intent = new Intent();
         intent.setClass(mContext, SignalRService.class);
@@ -97,4 +85,18 @@ public class MainActivity extends BaseActivity {
             mBound = false;
         }
     };
+
+    private void setupViewPager(ViewPager viewPager) {
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.QuizListFragment), getString(R.string.quizListTitle));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.HistoryFragment), getString(R.string.quizHistory));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_first, menu);
+        return true;
+    }
 }

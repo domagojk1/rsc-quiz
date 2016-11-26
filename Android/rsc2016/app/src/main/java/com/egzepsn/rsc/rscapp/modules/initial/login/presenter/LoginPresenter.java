@@ -4,5 +4,5 @@ import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 
 public interface LoginPresenter {
-    void login(CallbackManager callbackManager, LoginButton button);
+    void loginFacebook(CallbackManager callbackManager, LoginButton button);
 }

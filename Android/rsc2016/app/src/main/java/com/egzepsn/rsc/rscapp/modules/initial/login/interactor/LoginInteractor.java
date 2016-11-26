@@ -5,5 +5,5 @@ import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 
 public interface LoginInteractor {
-    void login(FinishedListener listener, CallbackManager manager, LoginButton button);
+    void loginFacebook(FinishedListener listener, CallbackManager manager, LoginButton button);
 }

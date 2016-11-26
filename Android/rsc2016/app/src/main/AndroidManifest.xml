@@ -24,10 +24,6 @@
             android:name=".modules.main.MainActivity"
             android:theme="@style/AppTheme"/>
 
-        <activity
-            android:name=".modules.main.DrawerActivity"
-            android:theme="@style/AppTheme"/>
-
         <service android:name=".services.RSCFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
