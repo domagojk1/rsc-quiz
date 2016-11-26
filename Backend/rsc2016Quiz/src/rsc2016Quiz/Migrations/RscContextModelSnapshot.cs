@@ -123,6 +123,24 @@ namespace rsc2016Quiz.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("rsc2016Quiz.Models.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Correct");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("QuestionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Answers");
+                });
+
             modelBuilder.Entity("rsc2016Quiz.Models.Event", b =>
                 {
                     b.Property<int>("Id")
@@ -144,6 +162,33 @@ namespace rsc2016Quiz.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("rsc2016Quiz.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("rsc2016Quiz.Models.QuestionEvent", b =>
+                {
+                    b.Property<int>("QuestionId");
+
+                    b.Property<int>("EventId");
+
+                    b.HasKey("QuestionId", "EventId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuestionEvents");
                 });
 
             modelBuilder.Entity("rsc2016Quiz.Models.Team", b =>
@@ -263,11 +308,32 @@ namespace rsc2016Quiz.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("rsc2016Quiz.Models.Answer", b =>
+                {
+                    b.HasOne("rsc2016Quiz.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("rsc2016Quiz.Models.Event", b =>
                 {
                     b.HasOne("rsc2016Quiz.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("rsc2016Quiz.Models.QuestionEvent", b =>
+                {
+                    b.HasOne("rsc2016Quiz.Models.Event", "Event")
+                        .WithMany("QuestionEvents")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("rsc2016Quiz.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("rsc2016Quiz.Models.TeamMember", b =>
