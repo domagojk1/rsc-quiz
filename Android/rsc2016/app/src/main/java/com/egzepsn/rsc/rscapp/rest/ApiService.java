@@ -11,9 +11,6 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     @POST("/api/Users/login")
-    Call<BaseReponse> login(@Body LoginRequest loginRequest);
-
-    @POST("api/Users/register")
-    Call<BaseReponse> register(@Body RegisterRequest registerRequest);
+    Call<Boolean> login(@Body LoginRequest loginRequest);
 }
 

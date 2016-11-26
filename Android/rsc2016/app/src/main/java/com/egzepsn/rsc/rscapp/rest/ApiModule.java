@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiModule {
 
-    private static final String BASE_URL = "http://rsc2016.azurewebsites.net/";
+    private static final String BASE_URL = "http://rsc2016quiz.azurewebsites.net/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

@@ -7,4 +7,5 @@ package com.egzepsn.rsc.rscapp.commons.listeners;
 public interface FinishedListener {
     void onSuccess();
     void onError(String error);
+    void onCancel();
 }

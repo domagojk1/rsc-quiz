@@ -6,7 +6,6 @@ import com.egzepsn.rsc.rscapp.enums.ActivityEnum;
 import com.egzepsn.rsc.rscapp.enums.FragmentEnum;
 import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
 import com.egzepsn.rsc.rscapp.modules.initial.login.LoginFragment;
-import com.egzepsn.rsc.rscapp.modules.initial.register.RegisterFragment;
 import com.egzepsn.rsc.rscapp.modules.main.MainActivity;
 import com.egzepsn.rsc.rscapp.modules.main.home.HomeFragment;
 
@@ -17,8 +16,6 @@ public class Creator {
         switch (fragmentEnum) {
             case LoginFragment:
                 return new LoginFragment();
-            case RegisterFragment:
-                return new RegisterFragment();
             case HomeFragment:
                 return new HomeFragment();
             default:

@@ -1,5 +1,7 @@
 package com.egzepsn.rsc.rscapp.modules.initial.login.presenter;
 
+import android.util.Log;
+
 import com.egzepsn.rsc.rscapp.app.RSCApp;
 import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
 import com.egzepsn.rsc.rscapp.modules.initial.login.interactor.LoginInteractor;
@@ -28,7 +30,12 @@ public class LoginPresenterImpl implements LoginPresenter, FinishedListener {
     }
 
     @Override
+    public void onCancel() {
+    }
+
+    @Override
     public void onSuccess() {
+        Log.e("ONSUCCESS", "PRESENTERIMPL");
         view.get().hideLoadingIndicator();
         view.get().navigateToMain();
     }

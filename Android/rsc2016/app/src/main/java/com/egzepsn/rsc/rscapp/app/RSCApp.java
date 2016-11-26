@@ -8,6 +8,7 @@ import android.support.multidex.MultiDex;
 import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
 import com.egzepsn.rsc.rscapp.models.User;
 import com.facebook.FacebookSdk;
+import com.facebook.LoggingBehavior;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialModule;
 import com.activeandroid.ActiveAndroid;
@@ -31,6 +32,8 @@ public class RSCApp extends Application {
         instance = this;
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.setIsDebugEnabled(true);
+        FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS);
         Iconify.with(new MaterialModule());
         ActiveAndroid.initialize(this);
     }
