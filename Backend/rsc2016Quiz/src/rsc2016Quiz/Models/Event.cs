@@ -1,0 +1,23 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace rsc2016Quiz.Models
+{
+    public class Event
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Place { get; set; }
+
+        [Required]
+        public DateTime DateTime { get; set; }
+        public string Description { get; set; }
+        public int MaxMemberPerTeam { get; set; }
+
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public User User { get; set; }
+    }
+}
