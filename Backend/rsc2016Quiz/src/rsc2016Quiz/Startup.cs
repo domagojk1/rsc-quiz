@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ namespace rsc2016Quiz
 
         private RsaSecurityKey key;
         private TokenAuthOptions tokenOptions;
+        public static IConnectionManager ConnectionManager;
 
         public Startup(IHostingEnvironment env)
         {
@@ -105,6 +107,7 @@ namespace rsc2016Quiz
             services.AddScoped<IEncryptionService, EncryptionService>();
             services.AddScoped<IApiErrorHandler, ApiErrorHandler>();
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddTransient<IConnectionManager, ConnectionManager>();
             
 
             #endregion
@@ -128,6 +131,8 @@ namespace rsc2016Quiz
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.AddSignalR();
+
             services.AddMvc()
                .AddJsonOptions(opt =>
                {
@@ -137,8 +142,10 @@ namespace rsc2016Quiz
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
+            ConnectionManager = serviceProvider.GetService<IConnectionManager>();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

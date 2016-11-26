@@ -8,9 +8,10 @@ using rsc2016Quiz.Models;
 namespace rsc2016Quiz.Migrations
 {
     [DbContext(typeof(RscContext))]
-    partial class RscContextModelSnapshot : ModelSnapshot
+    [Migration("20161126213822_Name")]
+    partial class Name
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -146,8 +147,7 @@ namespace rsc2016Quiz.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DateTime")
-                        .IsRequired();
+                    b.Property<DateTime>("DateTime");
 
                     b.Property<string>("Description");
 

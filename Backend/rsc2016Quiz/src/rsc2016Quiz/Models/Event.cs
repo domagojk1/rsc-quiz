@@ -9,11 +9,12 @@ namespace rsc2016Quiz.Models
     {
         public int Id { get; set; }
 
+        public string Name { get; set; }
         [Required]
         public string Place { get; set; }
 
         [Required]
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
         public string Description { get; set; }
         public int MaxMemberPerTeam { get; set; }
 

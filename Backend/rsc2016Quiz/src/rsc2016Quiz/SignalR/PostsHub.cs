@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace rsc2016Quiz.SignalR
 {
-    public class PostHub : Hub
+    public class PostsHub : Hub
     {
         private string userName = "";
         private static ConcurrentDictionary<string, string> FromUsers = new ConcurrentDictionary<string, string>();         // <connectionId, userName>
@@ -55,6 +55,14 @@ namespace rsc2016Quiz.SignalR
             ToUsers.TryRemove(userName, out oldId);
             ToUsers.TryAdd(userName, Context.ConnectionId);
         }
+
+        public void sendMsg(string msg)
+        {
+            string fromUser;
+
+            Clients.All.broadcastMessage(new ChatMessage() { UserName = "neka", Message = msg });
+        }
+
 
         public void Send(string message)
         {

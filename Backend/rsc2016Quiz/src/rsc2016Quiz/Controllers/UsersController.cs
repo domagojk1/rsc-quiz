@@ -40,7 +40,22 @@ namespace rsc2016Quiz.Controllers
             
         }
 
-       
+        [HttpPost("loginFree")]
+        [Produces(typeof(TokenDto))]
+        public async Task<IActionResult> Login()
+        {
+
+           // var result = await _authHandler.VerifyFacebookAccessToken(fbtoken.Token);
+
+            LoginDto lg = new LoginDto();
+            lg.id = "1233333";
+            lg.name = "Miho";
+                var token = await _membershipService.LoginToken(lg);
+                return Ok(Mapper.Map<TokenDto>(token));
+
+        }
+
+
 
 
         //   private readonly IMembershipService _membershipService;
