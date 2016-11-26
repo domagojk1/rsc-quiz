@@ -1,0 +1,25 @@
+﻿<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Quiz App</a>
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a [routerLink]="['/home']" routerLinkActive="active">Home</a></li>
+            <template [ngIf]="userService.isLoggedIn()">
+                <li><a [routerLink]="['/places']" routerLinkActive="active">Moderate quizes</a></li>
+            </template>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <template [ngIf]="userService.isLoggedIn() == false">
+                <li><a [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+                <li><a [routerLink]="['/register']" routerLinkActive="active">Register</a></li>
+            </template>
+            <template [ngIf]="userService.isLoggedIn()">
+                <li><a [routerLink]="['/user']" routerLinkActive="active">{{userService.user.username}}</a></li>
+                <li><a href="#login" (click)="userService.logout()">Logout</a></li>
+            </template>
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>
+<modal-confirm-component></modal-confirm-component>
