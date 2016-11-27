@@ -29,6 +29,11 @@ class QuizListViewController: UIViewController {
         configureConnection()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // hidesBottomBarWhenPushed = false
+    }
+    
     func initializeUI() {
         let quiz1 = Quiz()
         quiz1.name = "Kviz 1"

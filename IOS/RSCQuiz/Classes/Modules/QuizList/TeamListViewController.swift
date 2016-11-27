@@ -39,6 +39,7 @@ class TeamListViewController: UIViewController {
             if let team = team {
                 self.teamList.append(team)
                 self.teamsTableView.reloadData()
+                self.performSegue(withIdentifier: "openQuiz", sender: nil)
             } else {
                 self.showPopUpWith(title: "Error with adding", message: "You must enter team name and password.")
             }
@@ -50,6 +51,7 @@ class TeamListViewController: UIViewController {
             if result == true {
                 self.teamList[row].users!.append(UserDefaultsHelper.currentUser!)
                 self.teamsTableView.reloadData()
+                self.performSegue(withIdentifier: "openQuiz", sender: nil)
             } else {
                 self.showPopUpWith(title: "Error", message: "You must provide right password for joining a team.")
             }

@@ -49,4 +49,16 @@ class UserDefaultsHelper {
         }
     }
     
+    static var facebookUserId: String? {
+        get {
+            let defaults = UserDefaults.standard
+            let token = defaults.string(forKey: "facebookUserId")
+            return token
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.setValue(newValue, forKey: "facebookUserId")
+        }
+    }
+    
 }

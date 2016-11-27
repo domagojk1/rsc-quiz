@@ -29,7 +29,7 @@ extension UIViewController {
                 completion(nil)
                 return
             }
-            
+        
             let team = Team()
             team.name = textField1.text!
             team.password = textField2.text!
@@ -44,7 +44,6 @@ extension UIViewController {
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter team name"
         }
-        
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter team pasword"
         }
@@ -57,7 +56,7 @@ extension UIViewController {
     
     func showPopUpWithAction(title: String, password: String, completion: @escaping (Bool) -> ()) {
         let alertController = UIAlertController(title: title, message: "Enter team password:", preferredStyle: .alert)
-        
+    
         let saveAction = UIAlertAction(title: "Join", style: .default) { (alertAction) in
             let textField1 = alertController.textFields![0] as UITextField
             
@@ -66,24 +65,20 @@ extension UIViewController {
                 completion(false)
                 return
             }
-            
             if textValue1 != password {
                 completion(false)
                 return
             }
-            
             completion(true)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Enter team password"
         }
         
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
-        
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -91,7 +86,6 @@ extension UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
-        
         self.present(alertController, animated: true, completion: nil)
     }
 }
