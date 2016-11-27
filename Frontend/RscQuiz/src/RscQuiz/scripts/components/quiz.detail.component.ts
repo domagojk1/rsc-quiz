@@ -45,6 +45,7 @@ export class QuizDetailComponent {
     }
 
     getNextQuestion() {
+        this.quizService.sendNextQuestion(this.quiz);
         this.quiz.questions.push({ text: "Next question" });
     }
 

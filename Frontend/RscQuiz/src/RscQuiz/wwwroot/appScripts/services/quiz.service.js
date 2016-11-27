@@ -22,7 +22,6 @@ var QuizService = (function () {
         this.quizes = [];
         setInterval(function () {
             if (_this.getCurrentQuiz() != null) {
-                console.log("fetching teams");
                 _this.refreshTeams(_this.getCurrentQuiz().id);
             }
         }, 1000 * 5);
@@ -49,7 +48,7 @@ var QuizService = (function () {
     };
     QuizService.prototype.getMyQuizes = function () {
         var _this = this;
-        this.genericService.getObservableGet("/api/Events/MyEvents")
+        this.genericService.getObservableGet("api/Events/MyEvents")
             .subscribe(function (quizes) {
             _this.quizes = new Array();
             quizes.forEach(function (quiz) {
@@ -63,15 +62,18 @@ var QuizService = (function () {
     };
     QuizService.prototype.refreshTeams = function (eventId) {
         var _this = this;
-        this.genericService.getObservableGet("/api/Events/GetTeams/" + eventId)
+        this.genericService.getObservableGet("api/Events/GetTeams/" + eventId)
             .subscribe(function (quiz) {
-            _this.teams = quiz.teams;
+            if (_this.getCurrentQuiz() != null) {
+                console.log("got teams: " + quiz.teams.length + ", for quiz: " + quiz.name);
+                _this.teams = quiz.teams;
+            }
         });
     };
     QuizService.prototype.openQuiz = function (quiz) {
         if (quiz != null) {
             quiz.isOpen = true;
-            this.genericService.getObservableGet("/api/Events/OpenEvent/" + quiz.id)
+            this.genericService.getObservableGet("api/Events/OpenEvent/" + quiz.id)
                 .subscribe(function (teams) {
                 //this.teams = teams;
             });
@@ -80,7 +82,15 @@ var QuizService = (function () {
     QuizService.prototype.startQuiz = function (quiz) {
         if (quiz != null) {
             quiz.isOpen = false;
-            this.genericService.getObservableGet("/api/Events/StartEvent/" + quiz.id)
+            this.genericService.getObservableGet("api/Events/StartEvent/" + quiz.id)
+                .subscribe(function (teams) {
+                //this.teams = teams;
+            });
+        }
+    };
+    QuizService.prototype.sendNextQuestion = function (quiz) {
+        if (quiz != null) {
+            this.genericService.getObservableGet("api/Questions/GenerateQuestion/" + quiz.id)
                 .subscribe(function (teams) {
                 //this.teams = teams;
             });

@@ -1,7 +1,16 @@
 ﻿<div>
     <template [ngIf]="getCurrentQuestion() == null">
-        <p>Name: {{quiz.name}}</p>
+        <p>Quiz name: {{quiz.name}}</p>
         <p>Description: {{quiz.description}}</p>
+
+        <template [ngIf]="quiz.isOpen">
+            <p>Waiting for teams...</p>
+        </template>
+
+        <template [ngIf]="isInProgress()">
+            <p>Quiz is running</p>
+        </template>
+
         <p *ngIf="quiz.isOpen">Number of teams: {{getNumberOfTeams()}}</p>
         <teams *ngIf="quiz.isOpen"></teams>
         <div class="list-group">
@@ -11,7 +20,7 @@
                 </a>
             </template>
         </div>
-        <button *ngIf="canStartQuiz()" type="button" class="btn btn-success pull-right" (click)="startQuiz()">Start Quiz</button>
+        <button *ngIf="isInProgress() == false" [disabled]="canStartQuiz() == false" type="button" class="btn btn-success pull-right" (click)="startQuiz()">Start Quiz</button>
         <button *ngIf="isInProgress()" type="button" class="btn btn-success pull-right" (click)="getNextQuestion()">Start next question</button>
     </template>
     <template [ngIf]="getCurrentQuestion() != null">

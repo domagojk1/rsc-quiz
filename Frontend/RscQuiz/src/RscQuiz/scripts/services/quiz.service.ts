@@ -27,7 +27,6 @@ export class QuizService {
 
         setInterval(() => {
             if (this.getCurrentQuiz() != null) {
-                console.log("fetching teams");
                 this.refreshTeams(this.getCurrentQuiz().id);
             }
         }, 1000 * 5);
@@ -60,7 +59,7 @@ export class QuizService {
     }
 
     getMyQuizes(): void {
-        this.genericService.getObservableGet<Array<Quiz>>("/api/Events/MyEvents")
+        this.genericService.getObservableGet<Array<Quiz>>("api/Events/MyEvents")
             .subscribe(quizes => {
                 this.quizes = new Array<Quiz>();
                 quizes.forEach(quiz => {
@@ -74,16 +73,19 @@ export class QuizService {
     }
 
     refreshTeams(eventId: number): void {
-        this.genericService.getObservableGet<Quiz>("/api/Events/GetTeams/" + eventId)
+        this.genericService.getObservableGet<Quiz>("api/Events/GetTeams/" + eventId)
             .subscribe(quiz => {
-                this.teams = quiz.teams;
+                if (this.getCurrentQuiz() != null) {
+                    console.log("got teams: " + quiz.teams.length + ", for quiz: " + quiz.name);
+                    this.teams = quiz.teams;
+                }
             });
     }
 
     openQuiz(quiz: Quiz) {
         if (quiz != null) {
             quiz.isOpen = true;
-            this.genericService.getObservableGet<Array<Team>>("/api/Events/OpenEvent/" + quiz.id)
+            this.genericService.getObservableGet<Array<Team>>("api/Events/OpenEvent/" + quiz.id)
                 .subscribe(teams => {
                     //this.teams = teams;
                 });
@@ -93,7 +95,16 @@ export class QuizService {
     startQuiz(quiz: Quiz) {
         if (quiz != null) {
             quiz.isOpen = false;
-            this.genericService.getObservableGet<Array<Team>>("/api/Events/StartEvent/" + quiz.id)
+            this.genericService.getObservableGet<Array<Team>>("api/Events/StartEvent/" + quiz.id)
+                .subscribe(teams => {
+                    //this.teams = teams;
+                });
+        }
+    }
+
+    sendNextQuestion(quiz: Quiz) {
+        if (quiz != null) {
+            this.genericService.getObservableGet<Array<Team>>("api/Questions/GenerateQuestion/" + quiz.id)
                 .subscribe(teams => {
                     //this.teams = teams;
                 });

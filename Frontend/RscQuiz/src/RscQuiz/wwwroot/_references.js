@@ -10,6 +10,7 @@
 /// <reference path="appscripts/classes/quiz - copy.js" />
 /// <reference path="appscripts/classes/quiz.js" />
 /// <reference path="appscripts/classes/team.js" />
+/// <reference path="appscripts/classes/team.member.js" />
 /// <reference path="appscripts/classes/user - copy.js" />
 /// <reference path="appscripts/classes/user.js" />
 /// <reference path="appscripts/components/app.component.js" />

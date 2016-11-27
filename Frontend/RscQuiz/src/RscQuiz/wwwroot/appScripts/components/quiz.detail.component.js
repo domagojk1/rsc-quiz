@@ -41,6 +41,7 @@ var QuizDetailComponent = (function () {
         return this.quizService.getTeams() != null && this.quizService.getTeams().length > 1 && this.quiz.isOpen == false;
     };
     QuizDetailComponent.prototype.getNextQuestion = function () {
+        this.quizService.sendNextQuestion(this.quiz);
         this.quiz.questions.push({ text: "Next question" });
     };
     QuizDetailComponent.prototype.getNumberOfTeams = function () {

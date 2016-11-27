@@ -1,17 +1,6 @@
 ﻿<form role="form" class="form-horizontal">
     <template [ngIf]="response">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">Token:</label>
-            <div class="col-sm-9 controls">
-                <p class="form-control-static">{{response.authResponse.accessToken}}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">User ID:</label>
-            <div class="col-sm-9 controls">
-                <p class="form-control-static">{{response.authResponse.userID}}</p>
-            </div>
-        </div>
+       
     </template>
-    <button type="submit" (click)="login()" class="btn btn-success">Login</button>
+    <button type="submit" (click)="login()" class="btn btn-primary">Facebook Login</button>
 </form>
