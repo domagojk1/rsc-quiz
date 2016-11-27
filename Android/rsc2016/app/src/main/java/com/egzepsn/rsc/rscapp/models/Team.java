@@ -1,14 +1,23 @@
 package com.egzepsn.rsc.rscapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by kiki3 on 26.11.2016..
  */
 
-public class Team {
+public class Team implements Serializable {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("name")
     private String name;
-    private ArrayList<User> users;
+
+    @SerializedName("password")
+    private String password;
 
     public String getName() {
         return name;
@@ -18,11 +27,11 @@ public class Team {
         this.name = name;
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

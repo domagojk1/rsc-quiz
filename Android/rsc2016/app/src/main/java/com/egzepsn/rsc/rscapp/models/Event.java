@@ -1,28 +1,40 @@
 package com.egzepsn.rsc.rscapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Created by kiki3 on 26.11.2016..
  */
 
-public class Event {
-    private boolean enabled;
+public class Event implements Serializable {
+
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("isOpen")
+    private boolean isOpen;
+
+    @SerializedName("place")
     private String name;
-    private String time;
-    private String quizDescription;
 
-    public Event(boolean enabled, String name, String time, String quizDescription) {
-        this.enabled = enabled;
-        this.name = name;
-        this.time = time;
-        this.quizDescription = quizDescription;
+    @SerializedName("dateTime")
+    private String dateTime;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("teams")
+    private ArrayList<Team> teams;
+
+    public boolean isOpen() {
+        return isOpen;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 
     public String getName() {
@@ -33,19 +45,35 @@ public class Event {
         this.name = name;
     }
 
-    public String getTime() {
-        return time;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
-    public String getQuizDescription() {
-        return quizDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setQuizDescription(String quizDescription) {
-        this.quizDescription = quizDescription;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

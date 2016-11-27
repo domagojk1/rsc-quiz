@@ -6,12 +6,15 @@ import android.content.SharedPreferences;
 import android.support.multidex.MultiDex;
 
 import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
+import com.egzepsn.rsc.rscapp.models.Team;
 import com.egzepsn.rsc.rscapp.models.User;
 import com.facebook.FacebookSdk;
 import com.facebook.LoggingBehavior;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialModule;
 import com.activeandroid.ActiveAndroid;
+
+import java.util.ArrayList;
 
 /**
  * Created by domagoj on 11/23/16.
@@ -21,6 +24,7 @@ public class RSCApp extends Application {
     private static RSCApp instance;
     protected static AppStateEnum appState = AppStateEnum.NotSignedIn;
     protected static User loggedUser;
+    private static ArrayList<Team> teams;
 
     public static RSCApp getInstance() {
         return instance;
@@ -62,5 +66,13 @@ public class RSCApp extends Application {
 
     public static void setLoggedUser(User loggedUser) {
         RSCApp.loggedUser = loggedUser;
+    }
+
+    public static ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public static void setTeams(ArrayList<Team> teams) {
+        RSCApp.teams = teams;
     }
 }

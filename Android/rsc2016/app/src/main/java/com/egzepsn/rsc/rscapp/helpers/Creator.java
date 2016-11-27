@@ -7,11 +7,9 @@ import com.egzepsn.rsc.rscapp.enums.FragmentEnum;
 import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
 import com.egzepsn.rsc.rscapp.modules.initial.login.LoginFragment;
 import com.egzepsn.rsc.rscapp.modules.main.MainActivity;
-import com.egzepsn.rsc.rscapp.modules.main.home.HomeFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.HistoryFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.SettingsFragment;
-import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsActivity;
 import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
 
 
@@ -40,8 +38,6 @@ public class Creator {
                 return InitialActivity.class;
             case MainActivity:
                 return MainActivity.class;
-            case TeamsActivity:
-                return TeamsActivity.class;
             default:
                 return InitialActivity.class;
         }

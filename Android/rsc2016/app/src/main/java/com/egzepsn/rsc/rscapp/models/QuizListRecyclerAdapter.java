@@ -1,7 +1,10 @@
 package com.egzepsn.rsc.rscapp.models;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,14 +36,9 @@ public class QuizListRecyclerAdapter extends RecyclerView.Adapter<QuizListRecycl
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.quizName.setText(events.get(position).getName());
-        holder.quizDescription.setText(events.get(position).getQuizDescription());
-        holder.quizTime.setText(events.get(position).getTime());
-        if (events.get(position).isEnabled()) {
-            holder.itemView.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.itemView.setVisibility(View.INVISIBLE);
-        }
+        holder.quizDescription.setText(events.get(position).getDescription());
+        holder.quizTime.setText(events.get(position).getDateTime());
+        if (events.get(position).isOpen()) holder.cardView.setBackgroundColor(Color.parseColor("#EC407A"));
     }
 
     @Override
@@ -49,13 +47,17 @@ public class QuizListRecyclerAdapter extends RecyclerView.Adapter<QuizListRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView quizName = (TextView) itemView.findViewById(R.id.quiz_name);
-        public TextView quizDescription = (TextView) itemView.findViewById(R.id.quiz_description);
-        public TextView quizTime = (TextView) itemView.findViewById(R.id.quiz_time);
-        public ImageView imageView = (ImageView) itemView.findViewById(R.id.quiz_enabled);
+        public TextView quizName;
+        public TextView quizDescription;
+        public TextView quizTime;
+        public CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            quizName = (TextView) itemView.findViewById(R.id.name_quiz);
+            quizDescription = (TextView) itemView.findViewById(R.id.description);
+            quizTime = (TextView) itemView.findViewById(R.id.quiz_time);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
         }
     }
 }

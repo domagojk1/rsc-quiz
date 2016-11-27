@@ -21,7 +21,7 @@
         </activity>
 
         <activity android:name=".modules.main.MainActivity" />
-        <activity android:name=".modules.main.teams.TeamsActivity"/>
+
         <service android:enabled="true" android:name=".signalr.SignalRService" />
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity

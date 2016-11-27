@@ -32,17 +32,16 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.teamName.setText(teams.get(position).getName());
-        holder.placesAvailable.setText(teams.get(position).getUsers().size());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return teams.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView teamName = (TextView) itemView.findViewById(R.id.team_name);
-        public TextView placesAvailable = (TextView) itemView.findViewById(R.id.team_space);
+        public TextView id = (TextView) itemView.findViewById(R.id.team_id);
 
         public ViewHolder(View itemView) {
             super(itemView);
