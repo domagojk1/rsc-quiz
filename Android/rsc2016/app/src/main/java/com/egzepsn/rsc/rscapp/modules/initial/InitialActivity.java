@@ -11,7 +11,7 @@ public class InitialActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_initial);
+        setContentView(R.layout.activity_quiz);
 
         if (findViewById(R.id.fragment_container) != null) {
 

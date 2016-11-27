@@ -16,17 +16,13 @@
         <activity android:name=".modules.initial.InitialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".modules.main.MainActivity"
-            android:theme="@style/AppTheme"/>
-
+        <activity android:name=".modules.main.MainActivity" />
+        <activity android:name=".modules.main.teams.TeamsActivity"/>
         <service android:enabled="true" android:name=".signalr.SignalRService" />
-
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -37,8 +33,6 @@
             android:authorities="com.facebook.app.FacebookContentProvider213916405684635"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
-
-        <activity android:name=".modules.main.teams.TeamsActivity"/>
 
     </application>
 

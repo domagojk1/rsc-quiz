@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.egzepsn.rsc.rscapp.R;
+import com.egzepsn.rsc.rscapp.commons.fragment.BaseFragment;
 import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -26,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by kiki3 on 26.11.2016..
  */
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragment {
     private CircleImageView imageView;
     private TextView textView;
 

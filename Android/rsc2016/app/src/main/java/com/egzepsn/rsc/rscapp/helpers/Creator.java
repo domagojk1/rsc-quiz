@@ -11,6 +11,8 @@ import com.egzepsn.rsc.rscapp.modules.main.home.HomeFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.HistoryFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.SettingsFragment;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsActivity;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
 
 
 public class Creator {
@@ -25,6 +27,8 @@ public class Creator {
                 return new HistoryFragment();
             case SettingsFragment:
                 return new SettingsFragment();
+            case TeamsFragment:
+                return new TeamsFragment();
             default:
                 return new LoginFragment();
         }
@@ -36,6 +40,8 @@ public class Creator {
                 return InitialActivity.class;
             case MainActivity:
                 return MainActivity.class;
+            case TeamsActivity:
+                return TeamsActivity.class;
             default:
                 return InitialActivity.class;
         }

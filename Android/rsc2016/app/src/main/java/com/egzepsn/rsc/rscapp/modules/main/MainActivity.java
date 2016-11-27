@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,20 +17,25 @@ import android.view.MenuItem;
 import com.egzepsn.rsc.rscapp.R;
 import com.egzepsn.rsc.rscapp.app.RSCApp;
 import com.egzepsn.rsc.rscapp.commons.activity.BaseActivity;
+import com.egzepsn.rsc.rscapp.enums.AppStateEnum;
 import com.egzepsn.rsc.rscapp.enums.FragmentEnum;
 import com.egzepsn.rsc.rscapp.helpers.Creator;
 import com.egzepsn.rsc.rscapp.modules.initial.InitialActivity;
+import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizPagerAdapter;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsActivity;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
 import com.egzepsn.rsc.rscapp.signalr.SignalRService;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
-public class MainActivity extends BaseActivity {
-
+public class MainActivity extends BaseActivity implements QuizListFragment.OnItemSelectedListener {
+    private Unbinder unbinder;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
 
@@ -43,19 +50,19 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
 
+        RSCApp.getInstance().setAppState(AppStateEnum.SignedIn);
         Intent intent = new Intent();
         intent.setClass(mContext, SignalRService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
-    protected void onStop() {
-        // Unbind from the service
+    protected void onPause() {
         if (mBound) {
             unbindService(mConnection);
             mBound = false;
@@ -100,5 +107,15 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_first, menu);
         return true;
+    }
+
+
+    @Override
+    public void onSelect() {
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new TeamsFragment(), getString(R.string.quizListTitle));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.HistoryFragment), getString(R.string.quizHistory));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
+        viewPager.setAdapter(adapter);
     }
 }
