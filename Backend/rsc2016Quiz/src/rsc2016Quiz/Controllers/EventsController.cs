@@ -21,13 +21,15 @@ namespace rsc2016Quiz.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IConnectionManager _connectionManager;
         private readonly IApiErrorHandler _apiErrorHandler;
+        private readonly ITeamRepository _teamRepository;
 
-        public EventsController(IEventRepository eventRepository, IUserRepository userRepository, IConnectionManager connectionManager, IApiErrorHandler apiErrorHandler)
+        public EventsController(IEventRepository eventRepository, IUserRepository userRepository, IConnectionManager connectionManager, IApiErrorHandler apiErrorHandler, ITeamRepository teamRepository)
         {
             _eventRepository = eventRepository;
             _userRepository = userRepository;
             _connectionManager = connectionManager;
             _apiErrorHandler = apiErrorHandler;
+            _teamRepository = teamRepository;
         }
 
         [HttpGet("MyEvents")]
@@ -37,7 +39,13 @@ namespace rsc2016Quiz.Controllers
         {
             var userName = User.Identity.Name;
             var user = _userRepository.GetUserByEmail(userName);
-            return Ok(Mapper.Map<List<EventDto>>(_eventRepository.GetEventsForUser(user.Result.Id)));
+            var response = _eventRepository.GetEventsForUser(user.Result.Id);
+            foreach (var resp in response)
+            {
+                var rs = _teamRepository.GetTeamsByEventId(resp.Id);
+                resp.Teams = rs;
+            }
+            return Ok(Mapper.Map<List<EventDto>>(response));
         }
 
         [Authorize("Bearer")]
@@ -81,6 +89,11 @@ namespace rsc2016Quiz.Controllers
         public IActionResult GetAllEvents()
         {
             var result = _eventRepository.GetAllEvents();
+            foreach (var resp in result)
+            {
+                var rs = _teamRepository.GetTeamsByEventId(resp.Id);
+                resp.Teams = rs;
+            }
             return Ok(Mapper.Map<List<Event>>(result));
         }
 
@@ -89,8 +102,17 @@ namespace rsc2016Quiz.Controllers
         {
 
             var result = _eventRepository.GetEventById(id);
+
             if (result != null)
             {
+                var result2 = _eventRepository.GetAllEvents();
+                foreach (var resp in result2)
+                {
+                    var rs = _teamRepository.GetTeamsByEventId(resp.Id);
+                    resp.Teams = rs;
+                }
+                List<Event> events = new List<Event>();
+                _connectionManager.GetHubContext<PostsHub>().Clients.All.Send(result.ToString());
                 _eventRepository.OpenEvent(id);
             }
             return Ok(Mapper.Map<EventDto>(result));
@@ -101,6 +123,8 @@ namespace rsc2016Quiz.Controllers
         {
 
             var result = _eventRepository.GetEventById(id);
+            var rs = _teamRepository.GetTeamsByEventId(result.Id);
+            result.Teams = rs;
             if (result != null)
             {
                 return Ok(Mapper.Map<EventDto>(result));

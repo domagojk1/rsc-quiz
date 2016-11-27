@@ -33,12 +33,11 @@ namespace rsc2016Quiz.Controllers
         public IActionResult GenerateQuestion(int id)
         {
             var teams = _teamRepository.GetTeamsByEventId(id);
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.sendTeamListSend(teams);
             _connectionManager.GetHubContext<PostsHub>().Clients.All.SendTeamListSend(teams);
             var question =  _questionRepository.GenerateQuestion(id);
             if (question != null)
             {
-                _connectionManager.GetHubContext<PostsHub>().Clients.All.sendNextQuestion(question);
+                _connectionManager.GetHubContext<PostsHub>().Clients.All.SendNextQuestion(question);
                 return Ok(question);
 
             }

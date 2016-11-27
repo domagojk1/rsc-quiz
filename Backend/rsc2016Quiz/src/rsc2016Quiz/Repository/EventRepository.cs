@@ -39,17 +39,17 @@ namespace rsc2016Quiz.Repository
 
         public List<Event> GetEventsForUser(string userId)
         {
-            return _context.Events.Include(e => e.Teams).Where(e => e.UserId == userId).ToList();
+            return _context.Events.Where(e => e.UserId == userId).ToList();
         }
 
         public List<Event> GetAllEvents()
         {
-            return _context.Events.Include(e => e.Teams).ThenInclude(e => e.TeamMembers).ToList();
+            return _context.Events.ToList();
         }
 
         public Event GetEventById(int id)
         {
-            return _context.Events.Include(e => e.Teams).SingleOrDefault(t => t.Id == id);
+            return _context.Events.SingleOrDefault(t => t.Id == id);
         }
 
         public List<Event> GetEventByIdWithMembers(int id)

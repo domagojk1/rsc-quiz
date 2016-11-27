@@ -28,7 +28,7 @@ namespace rsc2016Quiz.Repository
 
         public  List<Team> GetTeamsByEventId(int eventId)
         {
-            return _context.Teams.Include(t => t.TeamMembers).Where(t => t.EventId == eventId).ToList();
+            return _context.Teams.Where(t => t.EventId == eventId).ToList();
         }
 
         public void AddMememberToTeam(int id,User user )
