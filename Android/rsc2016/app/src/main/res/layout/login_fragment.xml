@@ -14,7 +14,8 @@
         android:src="@drawable/quiz"
         android:layout_width="136dp"
         android:layout_height="205dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/app_title"

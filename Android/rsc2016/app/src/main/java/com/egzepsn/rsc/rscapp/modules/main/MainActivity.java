@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.egzepsn.rsc.rscapp.R;
+import com.egzepsn.rsc.rscapp.app.RSCApp;
 import com.egzepsn.rsc.rscapp.commons.activity.BaseActivity;
 import com.egzepsn.rsc.rscapp.enums.FragmentEnum;
 import com.egzepsn.rsc.rscapp.helpers.Creator;

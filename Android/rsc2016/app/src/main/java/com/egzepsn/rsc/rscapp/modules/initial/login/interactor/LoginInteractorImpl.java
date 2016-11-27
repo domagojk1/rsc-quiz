@@ -1,5 +1,7 @@
 package com.egzepsn.rsc.rscapp.modules.initial.login.interactor;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -34,26 +36,29 @@ public class LoginInteractorImpl implements LoginInteractor {
         button.registerCallback(manager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                String token = loginResult.getAccessToken().getToken();
+                final String token = loginResult.getAccessToken().getToken();
                 sendToken(token);
 
-                final GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
-
                                 try {
                                     JSONObject jsonObject = response.getJSONObject();
+                                    Log.d("ONCOMPLETED",jsonObject + "");
                                     User user = new User();
+                                    user.setToken(token);
                                     user.setUsername(jsonObject.getString("email"));
-                                    String profilePicUrl = jsonObject.getString("picture") + jsonObject.getString("data") + jsonObject.getString("url");
-                                    user.setUserPicture(profilePicUrl);
-                                    Log.d("USERPICT", user.getUserPicture());
+                                    user.setUserPicture("https://graph.facebook.com/" + jsonObject.getString("id") + "/picture?type=large");
+                                    RSCApp.setLoggedUser(user);
 
+                                    SharedPreferences.Editor editor = RSCApp.getInstance().getSharedPreferences("USER_PREFS", Context.MODE_PRIVATE).edit();
+                                    editor.putString("userPicture", RSCApp.getLoggedUser().getUserPicture());
+                                    editor.putString("userEmail", RSCApp.getLoggedUser().getUsername());
+                                    editor.apply();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
                             }
 
                         });
@@ -62,6 +67,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                 params.putString("fields", "id,email,gender,cover,picture.type(large)");
                 request.setParameters(params);
                 request.executeAsync();
+
                 listener.onSuccess();
             }
 

@@ -20,4 +20,9 @@
     <string name="quizHistory">History</string>
     <string name="settings">Profile</string>
     <string name="logout">Logout</string>
+    <string name="create_new_team">Create new team</string>
+    <string name="team_name">Team name</string>
+    <string name="team_pass">Password</string>
+    <string name="add">ADD</string>
+    <string name="cancel_">CANCEL</string>
 </resources>

@@ -1,8 +1,10 @@
 package com.egzepsn.rsc.rscapp.modules.main.pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,9 @@ import android.widget.ImageView;
 import com.egzepsn.rsc.rscapp.R;
 import com.egzepsn.rsc.rscapp.models.Event;
 import com.egzepsn.rsc.rscapp.models.QuizListRecyclerAdapter;
+import com.egzepsn.rsc.rscapp.modules.main.RecycleItemClickListener;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsActivity;
+import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
 
 import java.util.ArrayList;
 
@@ -32,7 +37,6 @@ public class QuizListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_quiz_list, null);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_quiz_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        imageView = (ImageView) view.findViewById(R.id.quiz_enabled);
         events = new ArrayList<>();
 
         events.add(new Event(true, "Quiz name", "18:00", "Ovo je kviz"));
@@ -42,8 +46,26 @@ public class QuizListFragment extends Fragment {
 
         adapter = new QuizListRecyclerAdapter(events, getActivity());
         recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnItemTouchListener(new RecycleItemClickListener(getActivity(), recyclerView, new RecycleItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (events.get(position).isEnabled()) {
+                    Intent intent = new Intent(getActivity(), TeamsActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+            }
+        }));
+
         return view;
     }
 
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 }
