@@ -31,39 +31,26 @@ class QuizListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchData()
     }
     
     func initializeUI() {
-        let quiz1 = Quiz()
-        quiz1.name = "Kviz 1"
-        quiz1.quizDescription = "lalalala"
-        quiz1.isEnabled = true
-        let quiz2 = Quiz()
-        quiz2.name = "Kviz 2"
-        quiz2.quizDescription = "lalalala"
-        quiz2.isEnabled = true
-
-        let quiz3 = Quiz()
-        quiz3.name = "Kviz 3"
-        quiz3.quizDescription = "lalalala"
-        quiz3.isEnabled = false
-
-        let quiz4 = Quiz()
-        quiz4.name = "Kviz 4"
-        quiz4.quizDescription = "lalalala"
-        quiz4.isEnabled = false
-
-        let quiz5 = Quiz()
-        quiz5.name = "Kviz 5"
-        quiz5.quizDescription = "lalalala"
-        quiz5.isEnabled = false
-
-        quizList.append(quiz1)
-        quizList.append(quiz2)
-        quizList.append(quiz3)
-        quizList.append(quiz4)
-        quizList.append(quiz5)
-        quizListTableView.reloadData()
+        
+    }
+    
+    func fetchData() {
+        showSpinner()
+        let eventsStore = EventsStore()
+        eventsStore.fetchEvents { (response) in
+            switch response {
+            case .success(let quizList):
+                self.quizList = quizList
+            case .failure(let error):
+                print(error)
+            }
+            self.quizListTableView.reloadData()
+            self.hideSpinner()
+        }
     }
     
     // MARK: - Private methods
@@ -129,7 +116,7 @@ extension QuizListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let quiz = quizList[indexPath.row]
-        if quiz.isEnabled == true {
+        if quiz.isOpen == true {
             performSegue(withIdentifier: "openTeamList", sender: indexPath.row)
         } else {
             showPopUpWith(title: "Quiz closed", message: "Quiz is currently closed. Come again later :)")

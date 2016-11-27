@@ -53,15 +53,15 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="311" height="24"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-En-SJo">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="261" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zem-XZ-kK9">
-                                                                    <rect key="frame" x="261" y="0.0" width="50" height="24"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zem-XZ-kK9">
+                                                                    <rect key="frame" x="191" y="0.0" width="120" height="24"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="50" id="o5j-2v-2Uf"/>
+                                                                        <constraint firstAttribute="width" constant="120" id="o5j-2v-2Uf"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                     <nil key="textColor"/>

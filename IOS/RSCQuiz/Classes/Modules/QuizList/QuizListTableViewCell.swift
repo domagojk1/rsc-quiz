@@ -21,9 +21,9 @@ class QuizListTableViewCell: UITableViewCell {
         willSet {
             nameLabel.text = newValue?.name
             descriptionLabel.text = newValue?.quizDescription
-            timeLabel.text = "18:00"
+            timeLabel.text = "@\(newValue!.place!)"
             
-            if newValue?.isEnabled == true {
+            if newValue?.isOpen == true {
                 checkView.backgroundColor = UIColor.green
             } else {
                 checkView.backgroundColor = UIColor.red
