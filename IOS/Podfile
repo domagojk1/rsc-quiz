@@ -1,0 +1,21 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'RSCQuiz' do
+  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for RSCQuiz
+  pod 'Alamofire', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.1'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  pod 'Google/SignIn'
+  pod 'IQKeyboardManagerSwift'
+  pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'M13Checkbox'
+  pod 'ObjectMapper', '~> 2.2'
+  pod 'RealmSwift'
+  pod 'SwiftR'
+end

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="RSCQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FgA-X5-v5i">
+                                <rect key="frame" x="16" y="391" width="343" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dh-fx-VwV">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                        <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="DQL-Ty-tcD"/>
+                                        </constraints>
+                                        <state key="normal" title="Facebook">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-TC-YpA">
+                                        <rect key="frame" x="0.0" y="80" width="343" height="48"/>
+                                        <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Google">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-eT-buP">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egzepšn@RSC2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9O-vV-Crf">
+                                <rect key="frame" x="132" y="645" width="111.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" image="RSC" translatesAutoresizingMaskIntoConstraints="NO" id="GeO-rB-5cJ">
+                                <rect key="frame" x="117" y="125" width="141" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="NgY-Bn-soS"/>
+                                    <constraint firstAttribute="width" secondItem="GeO-rB-5cJ" secondAttribute="height" multiplier="100:107" id="zAd-s5-AXb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="top" secondItem="GeO-rB-5cJ" secondAttribute="bottom" constant="48" id="JMW-cA-d53"/>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kjz-7J-O5t"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QGi-aO-RkN"/>
+                            <constraint firstItem="G9O-vV-Crf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ViW-Re-1LM"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="top" secondItem="Hf3-eT-buP" secondAttribute="bottom" constant="48" id="gqv-6x-nLC"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jNP-Jt-JVu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FgA-X5-v5i" secondAttribute="trailing" id="lVW-2D-Ddl"/>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nkO-Am-GiH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G9O-vV-Crf" secondAttribute="bottom" constant="8" id="xzJ-NY-qHw"/>
+                            <constraint firstItem="GeO-rB-5cJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zki-CO-kiO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Hf3-eT-buP" id="Kqu-aw-Eto"/>
+                        <outlet property="facebookLoginButton" destination="9dh-fx-VwV" id="1hB-qm-lgV"/>
+                        <outlet property="googleLoginButton" destination="mBB-TC-YpA" id="MTx-AZ-oBJ"/>
+                        <segue destination="ZLn-9r-Lf5" kind="show" identifier="openApplication" id="7Vu-l6-R5K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="25" y="123"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9vs-dv-3sg">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarViewController" id="ZLn-9r-Lf5" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Wav-Fc-aeW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Cb6-4T-Q7t" kind="relationship" relationship="viewControllers" id="X6I-z0-evb"/>
+                        <segue destination="Ubd-GZ-o1y" kind="relationship" relationship="viewControllers" id="UXg-lX-Oeq"/>
+                        <segue destination="bYh-pj-tRs" kind="relationship" relationship="viewControllers" id="12w-L2-dpi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zLM-BC-kdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="974" y="123"/>
+        </scene>
+        <!--QuizList-->
+        <scene sceneID="ARL-6O-fbQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QuizList" id="Cb6-4T-Q7t" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="QuizList" id="IoV-y4-odh"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnC-R1-iQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850" y="-148"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="Eq5-1L-0l7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="History" id="Ubd-GZ-o1y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RFH-iA-nLv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ga-hg-f1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="122"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="WLU-Xr-qCv">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="bYh-pj-tRs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Vo3-jt-SxY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVW-Sx-7bL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="341"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="QuizList" width="25" height="25"/>
+        <image name="RSC" width="93" height="100"/>
+    </resources>
+</document>
