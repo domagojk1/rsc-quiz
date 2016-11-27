@@ -47,6 +47,19 @@ namespace rsc2016Quiz.Repository
             Commit();
         }
 
+        public void IncrementTeam(int id)
+        {
+            var team = GetTeamById(id);
+            if (team != null)
+            {
+                team.Score++;
+                _context.Teams.Update(team);
+                Commit();
+            }
+            
+
+        }
+
         private void Commit()
         {
             _context.SaveChanges();

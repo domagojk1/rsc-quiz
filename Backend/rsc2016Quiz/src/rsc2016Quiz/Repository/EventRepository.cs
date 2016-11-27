@@ -44,12 +44,12 @@ namespace rsc2016Quiz.Repository
 
         public List<Event> GetAllEvents()
         {
-            return _context.Events.Include(e => e.Teams).ToList();
+            return _context.Events.Include(e => e.Teams).ThenInclude(e => e.TeamMembers).ToList();
         }
 
         public Event GetEventById(int id)
         {
-            return _context.Events.SingleOrDefault(t => t.Id == id);
+            return _context.Events.Include(e => e.Teams).SingleOrDefault(t => t.Id == id);
         }
 
         public List<Event> GetEventByIdWithMembers(int id)

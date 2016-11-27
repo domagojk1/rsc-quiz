@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace rsc2016Quiz.Dtos
+﻿namespace rsc2016Quiz.Dtos
 {
     public class UserAnswerDto
     {
+        public int AnswerId { get; set; }
+        public int QuestionId { get; set; }
+        public int TeamId { get; set; }
     }
 }

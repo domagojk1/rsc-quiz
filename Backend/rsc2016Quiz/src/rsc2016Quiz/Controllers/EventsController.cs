@@ -67,7 +67,7 @@ namespace rsc2016Quiz.Controllers
         }
 
         [Authorize("Bearer")]
-        [HttpPost("StartEvent/{id}")]
+        [HttpGet("StartEvent/{id}")]
         public IActionResult StartEvent(int id)
         {
            var evt =
@@ -76,6 +76,7 @@ namespace rsc2016Quiz.Controllers
             {
                 _eventRepository.CloseEvent(id);
                 _connectionManager.GetHubContext<PostsHub>().Clients.All.startQuiz("Quiz has started");
+                _connectionManager.GetHubContext<PostsHub>().Clients.All.StartQuiz("Quiz has started");
                 return Ok(evt);
             }
             return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Quiz with that id doesnt exist")));

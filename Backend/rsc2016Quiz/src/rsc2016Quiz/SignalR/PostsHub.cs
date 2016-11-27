@@ -78,7 +78,7 @@ namespace rsc2016Quiz.SignalR
             Clients.All.broadcastMessage(events);
         }
 
-        public void SendTeamListSend(ICollection<Team> teams )
+        public void SendTeamListSend(ICollection<Team> teams)
         {
             // Call the broadcastMessage method to update clients.            
             string fromUser;
@@ -94,12 +94,12 @@ namespace rsc2016Quiz.SignalR
             Clients.All.broadcastMessage(message);
         }
 
-        public void SendNextQuestion(string message)
+        public void SendNextQuestion(Question question)
         {
             // Call the broadcastMessage method to update clients.            
             string fromUser;
             FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
-            Clients.All.broadcastMessage(new ChatMessage() { UserName = fromUser, Message = message });
+            Clients.All.broadcastMessage(question);
         }
 
 

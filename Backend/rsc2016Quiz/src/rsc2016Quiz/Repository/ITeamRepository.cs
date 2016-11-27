@@ -12,5 +12,6 @@ namespace rsc2016Quiz.Repository
         Team GetTeamById(int id);
         List<Team> GetTeamsByEventId(int eventId);
         void AddMememberToTeam(int id,User user );
+        void IncrementTeam(int id);
     }
 }

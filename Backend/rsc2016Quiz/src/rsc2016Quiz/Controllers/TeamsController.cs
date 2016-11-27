@@ -51,7 +51,6 @@ namespace rsc2016Quiz.Controllers
             return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Invalid data")));
         }
 
-        [Authorize]
         [HttpPost("Create")]
         [Produces(typeof(TeamPwDto))]
         public IActionResult CreateTeam([FromBody] TeamCreateDto model)

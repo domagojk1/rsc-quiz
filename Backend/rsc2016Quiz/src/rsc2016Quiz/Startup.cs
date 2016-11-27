@@ -138,6 +138,7 @@ namespace rsc2016Quiz
             services.AddMvc()
                .AddJsonOptions(opt =>
                {
+                   opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                    opt.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.None;
                }); services.AddMvc();
