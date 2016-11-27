@@ -1,5 +1,6 @@
 package com.egzepsn.rsc.rscapp.modules.main.teams;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -27,6 +28,23 @@ import retrofit2.Response;
  */
 
 public class NewTeamDialog extends DialogFragment {
+    private OnJoinedTeamListener callback;
+
+    public interface OnJoinedTeamListener {
+        void onJoin();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            callback = (NewTeamDialog.OnJoinedTeamListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @NonNull
     @Override
@@ -53,6 +71,7 @@ public class NewTeamDialog extends DialogFragment {
                             @Override
                             public void onResponse(Call<JoinTeamResponse> call, Response<JoinTeamResponse> response) {
                                 Log.d("ONRESPONSE", "JOINED");
+                                callback.onJoin();
                             }
 
                             @Override

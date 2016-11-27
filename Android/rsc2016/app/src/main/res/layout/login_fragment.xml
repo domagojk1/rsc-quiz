@@ -12,10 +12,11 @@
 
     <ImageView
         android:src="@drawable/quiz"
-        android:layout_width="136dp"
+        android:layout_width="199dp"
         android:layout_height="205dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.34" />
 
     <TextView
         android:id="@+id/app_title"
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_gravity="center_horizontal" />
 
     <com.facebook.login.widget.LoginButton

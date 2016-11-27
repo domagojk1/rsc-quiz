@@ -20,6 +20,8 @@ import com.egzepsn.rsc.rscapp.models.CreateTeam;
 import com.egzepsn.rsc.rscapp.models.Event;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizPagerAdapter;
+import com.egzepsn.rsc.rscapp.modules.main.quiz.QuizFragment;
+import com.egzepsn.rsc.rscapp.modules.main.teams.NewTeamDialog;
 import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
 import com.egzepsn.rsc.rscapp.signalr.SignalRService;
 
@@ -28,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class MainActivity extends BaseActivity implements QuizListFragment.OnItemSelectedListener {
+public class MainActivity extends BaseActivity implements QuizListFragment.OnItemSelectedListener, NewTeamDialog.OnJoinedTeamListener {
     private Unbinder unbinder;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -36,9 +38,6 @@ public class MainActivity extends BaseActivity implements QuizListFragment.OnIte
     @BindView(R.id.view_pager)
     ViewPager viewPager;
 
-    private final Context mContext = this;
-    private SignalRService mService;
-    private boolean mBound = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,49 +49,11 @@ public class MainActivity extends BaseActivity implements QuizListFragment.OnIte
         tabLayout.setupWithViewPager(viewPager);
 
         RSCApp.getInstance().setAppState(AppStateEnum.SignedIn);
-        Intent intent = new Intent();
-        intent.setClass(mContext, SignalRService.class);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
-
-    @Override
-    protected void onPause() {
-        if (mBound) {
-            unbindService(mConnection);
-            mBound = false;
-        }
-        super.onStop();
-    }
-
-    public void sendMessage(String message) {
-        if (mBound) {
-            mService.sendMessage(message);
-        }
-    }
-
-    /**
-     * Defines callbacks for service binding, passed to bindService()
-     */
-    private final ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            // We've bound to SignalRService, cast the IBinder and get SignalRService instance
-            SignalRService.LocalBinder binder = (SignalRService.LocalBinder) service;
-            mService = binder.getService();
-            mBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
 
     private void setupViewPager(ViewPager viewPager) {
         QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.QuizListFragment), getString(R.string.quizListTitle));
-        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.HistoryFragment), getString(R.string.quizHistory));
         adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
         viewPager.setAdapter(adapter);
     }
@@ -103,7 +64,6 @@ public class MainActivity extends BaseActivity implements QuizListFragment.OnIte
         return true;
     }
 
-
     @Override
     public void onSelect(Event event) {
         QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
@@ -113,7 +73,14 @@ public class MainActivity extends BaseActivity implements QuizListFragment.OnIte
         RSCApp.setTeams(event.getTeams());
         fragment.setArguments(bundle);
         adapter.addFragment(fragment, getString(R.string.quizListTitle));
-        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.HistoryFragment), getString(R.string.quizHistory));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onJoin() {
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new QuizFragment(), getString(R.string.quizListTitle));
         adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
         viewPager.setAdapter(adapter);
     }

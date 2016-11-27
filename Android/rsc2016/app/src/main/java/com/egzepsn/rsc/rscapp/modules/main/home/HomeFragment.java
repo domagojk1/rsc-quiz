@@ -51,9 +51,4 @@ public class HomeFragment extends BaseFragment implements HomeView {
         //Platform.loadPlatformComponent(new AndroidPlatformComponent());
 
     }
-
-    @OnClick(R.id.btn_signalr_send)
-    public void sendMessage(){
-        ((MainActivity)getActivity()).sendMessage(etSignalRMessage.getText().toString());
-    }
 }

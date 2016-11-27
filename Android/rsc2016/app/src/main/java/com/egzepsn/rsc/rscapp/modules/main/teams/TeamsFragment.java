@@ -12,18 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.egzepsn.rsc.rscapp.R;
 import com.egzepsn.rsc.rscapp.app.RSCApp;
 import com.egzepsn.rsc.rscapp.commons.fragment.BaseFragment;
 import com.egzepsn.rsc.rscapp.models.TeamsAdapter;
 import com.egzepsn.rsc.rscapp.modules.main.RecycleItemClickListener;
+import com.egzepsn.rsc.rscapp.signalr.SignalRListener;
 
 /**
  * Created by kiki3 on 27.11.2016..
  */
 
-public class TeamsFragment extends BaseFragment {
+public class TeamsFragment extends BaseFragment implements SignalRListener {
     private RecyclerView recyclerView;
     private TeamsAdapter adapter;
     private Button button;
@@ -47,6 +49,8 @@ public class TeamsFragment extends BaseFragment {
         adapter = new TeamsAdapter(RSCApp.getTeams(), getActivity());
         recyclerView.setAdapter(adapter);
 
+        RSCApp.getInstance().addSignalRListener(this);
+
         recyclerView.addOnItemTouchListener(new RecycleItemClickListener(getActivity(), recyclerView, new RecycleItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -69,5 +73,15 @@ public class TeamsFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onHubMessageReceived(Object object) {
+        Toast.makeText(this.getActivity(), "", Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public void onHubMessageReceivedStartQuiz(Object object) {
+        Toast.makeText(this.getActivity(), "", Toast.LENGTH_SHORT);
     }
 }
