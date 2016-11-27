@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tNV-a5-4ho" id="COM-hN-r4t">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-JH-Kvp">
@@ -136,7 +136,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8RS-qy-XCO" id="L4F-vj-cHz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xtT-Yi-XQl">
@@ -214,7 +214,7 @@
         <!--Quiz-->
         <scene sceneID="ZSL-fD-nAM">
             <objects>
-                <viewController storyboardIdentifier="QuizViewController" automaticallyAdjustsScrollViewInsets="NO" id="TqK-Hq-pvU" customClass="QuestionViewController" customModule="RSCQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionViewController" automaticallyAdjustsScrollViewInsets="NO" id="TqK-Hq-pvU" customClass="QuestionViewController" customModule="RSCQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aQs-fG-aUy"/>
                         <viewControllerLayoutGuide type="bottom" id="ws6-uH-aaO"/>
@@ -331,11 +331,83 @@
                         <outlet property="questionTableView" destination="VbJ-8R-idI" id="kDR-to-yS9"/>
                         <outlet property="questionTextLabel" destination="Twm-CY-ni6" id="3a1-IX-ZPj"/>
                         <outlet property="questionTime" destination="yxw-ii-cRC" id="cqD-I0-IBO"/>
+                        <segue destination="YDN-Ik-CDo" kind="show" id="PIe-W2-VPn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99W-xR-0UM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3332" y="-271.21439280359823"/>
+        </scene>
+        <!--Quiz result-->
+        <scene sceneID="g3Y-jV-1zO">
+            <objects>
+                <viewController storyboardIdentifier="QuizResultViewController" id="YDN-Ik-CDo" customClass="QuizResultViewController" customModule="RSCQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LyJ-rd-qeG"/>
+                        <viewControllerLayoutGuide type="bottom" id="krP-Qs-gHk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t6b-4K-Bcc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="bfm-aQ-pRC">
+                                <rect key="frame" x="40" y="240.5" width="295" height="187.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZj-Ys-zR1">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCk-Af-ruk">
+                                        <rect key="frame" x="0.0" y="69.5" width="295" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9T-bF-cXv">
+                                        <rect key="frame" x="0.0" y="147.5" width="295" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="va3-Rd-vwl">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bfm-aQ-pRC" firstAttribute="centerY" secondItem="t6b-4K-Bcc" secondAttribute="centerY" id="7Rm-Un-fQT"/>
+                            <constraint firstItem="bfm-aQ-pRC" firstAttribute="leading" secondItem="t6b-4K-Bcc" secondAttribute="leadingMargin" constant="24" id="ReB-FM-1d6"/>
+                            <constraint firstItem="bfm-aQ-pRC" firstAttribute="centerX" secondItem="t6b-4K-Bcc" secondAttribute="centerX" id="ai6-FB-KgY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bfm-aQ-pRC" secondAttribute="trailing" constant="24" id="v4K-uE-EcN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Quiz result" id="XEl-kH-gcq"/>
+                    <connections>
+                        <outlet property="exitButton" destination="u9T-bF-cXv" id="Xuz-ve-5nb"/>
+                        <outlet property="messageLabel" destination="bZj-Ys-zR1" id="qF0-kF-oAA"/>
+                        <outlet property="resultLabel" destination="xCk-Af-ruk" id="7rd-G2-91a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O8r-AR-hAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4250" y="-271"/>
         </scene>
         <!--Quiz List-->
         <scene sceneID="014-E5-0H8">
@@ -344,7 +416,7 @@
                     <tabBarItem key="tabBarItem" title="Quiz List" image="QuizList" id="miq-3C-6Hn"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AH9-Eo-QW2" userLabel="Navigation Item">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AH9-Eo-QW2" userLabel="Navigation Item">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

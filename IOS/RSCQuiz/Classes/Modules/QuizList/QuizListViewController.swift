@@ -31,7 +31,6 @@ class QuizListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // hidesBottomBarWhenPushed = false
     }
     
     func initializeUI() {

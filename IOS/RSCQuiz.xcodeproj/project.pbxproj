@@ -18,6 +18,7 @@
 		4FCF470A1DEA66A4003A820F /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF47091DEA66A4003A820F /* QuestionTableViewCell.swift */; };
 		4FCF470C1DEA66AE003A820F /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF470B1DEA66AE003A820F /* Question.swift */; };
 		4FCF470E1DEA66E0003A820F /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF470D1DEA66E0003A820F /* Answer.swift */; };
+		4FCF47101DEA80F8003A820F /* QuizResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF470F1DEA80F8003A820F /* QuizResultViewController.swift */; };
 		4FD7CCB61DE9CD3F004B239A /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB51DE9CD3F004B239A /* UserStore.swift */; };
 		4FD7CCB81DE9CD52004B239A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB71DE9CD52004B239A /* API.swift */; };
 		4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB91DE9CE16004B239A /* APIResponse.swift */; };
@@ -53,6 +54,7 @@
 		4FCF47091DEA66A4003A820F /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		4FCF470B1DEA66AE003A820F /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		4FCF470D1DEA66E0003A820F /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		4FCF470F1DEA80F8003A820F /* QuizResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizResultViewController.swift; sourceTree = "<group>"; };
 		4FD7CCB51DE9CD3F004B239A /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		4FD7CCB71DE9CD52004B239A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4FD7CCB91DE9CE16004B239A /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				4FCF47091DEA66A4003A820F /* QuestionTableViewCell.swift */,
 				4FCF470B1DEA66AE003A820F /* Question.swift */,
 				4FCF470D1DEA66E0003A820F /* Answer.swift */,
+				4FCF470F1DEA80F8003A820F /* QuizResultViewController.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				4FD7CCC01DE9D257004B239A /* LoginInterfaces.swift in Sources */,
 				4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */,
 				4FD7CCD11DE9DC40004B239A /* SettingsInterfaces.swift in Sources */,
+				4FCF47101DEA80F8003A820F /* QuizResultViewController.swift in Sources */,
 				4FF2882E1DE9969C006273C2 /* AppDelegate.swift in Sources */,
 				4FD7CCD51DE9E534004B239A /* QuizListTableViewCell.swift in Sources */,
 				4FD7CCCD1DE9DBBD004B239A /* SettingsViewController.swift in Sources */,

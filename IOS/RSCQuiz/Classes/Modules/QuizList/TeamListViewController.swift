@@ -34,6 +34,13 @@ class TeamListViewController: UIViewController {
         teamsTableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openQuiz" {
+            let vc = segue.destination as! QuestionViewController
+            vc.number = 1
+        }
+    }
+    
     @IBAction func didTapAddNewTeamButton(_ sender: UIBarButtonItem) {
         showPopUpWithActions(title: "Add team", user: UserDefaultsHelper.currentUser!) { (team) in
             if let team = team {

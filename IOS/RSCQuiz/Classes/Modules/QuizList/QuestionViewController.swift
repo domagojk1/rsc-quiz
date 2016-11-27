@@ -15,6 +15,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var questionTableView: UITableView!
     @IBOutlet weak var answerButton: UIButton!
     
+    var number: Int?
     var question: Question?
     
     override func viewDidLoad() {
@@ -22,6 +23,8 @@ class QuestionViewController: UIViewController {
         
         questionTableView.delegate = self
         questionTableView.dataSource = self
+        navigationItem.hidesBackButton = true
+        answerButton.addTarget(self, action: #selector(didTapAnswer), for: .touchUpInside)
 
         var answers = [Answer]()
         let answer1 = Answer()
@@ -47,6 +50,22 @@ class QuestionViewController: UIViewController {
         
         questionTableView.reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    func didTapAnswer() {
+        // TODO: Send answer
+        
+        let storyboard = UIStoryboard(name: "QuizList", bundle: nil)
+        number = number! + 1
+        if number! > 3 {
+            let vc = storyboard.instantiateViewController(withIdentifier: "QuizResultViewController") as! QuizResultViewController
+            show(vc, sender: nil)
+
+        } else {
+            let vc = storyboard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
+            vc.number = number
+            show(vc, sender: nil)
+        }
     }
 }
 
