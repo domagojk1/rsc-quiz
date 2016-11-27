@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="50dp"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_gravity="center_horizontal"
+    android:background="#E0E0E0">
+
+
+    <TextView
+        android:id="@+id/question"
+        android:textStyle="bold"
+        android:text="Koliko je timova sudjelovalo na RSC-u?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="29dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <com.bigmercu.cBox.CheckBox
+        android:id="@+id/checkbox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp"
+        app:check_text="3"
+        android:layout_below="@+id/question"
+        android:layout_alignStart="@+id/question"
+        android:layout_marginTop="38dp"
+        app:color_after="@color/accent"
+        app:color_before="@color/primary"
+        app:check_style="hook"
+        app:is_circle_border="true"/>
+
+    <com.bigmercu.cBox.CheckBox
+        android:id="@+id/checkbox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:check_text="6"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/checkbox1"
+        android:layout_alignStart="@+id/question"
+        app:color_after="@color/accent"
+        app:color_before="@color/primary"
+        app:check_style="hook"
+        app:is_circle_border="true"/>
+
+    <com.bigmercu.cBox.CheckBox
+        android:id="@+id/checkbox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:check_text="8"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/checkbox2"
+        android:layout_alignStart="@+id/question"
+        app:color_after="@color/accent"
+        app:color_before="@color/primary"
+        app:check_style="hook"
+        app:is_circle_border="true"/>
+
+    <com.bigmercu.cBox.CheckBox
+        android:id="@+id/checkbox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:check_text="15"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/checkbox3"
+        android:layout_alignStart="@+id/question"
+        app:color_after="@color/accent"
+        app:color_before="@color/primary"
+        app:check_style="hook"
+        app:is_circle_border="true"/>
+
+    <ImageView
+        android:id="@+id/next_question"
+        android:src="@drawable/arrow"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

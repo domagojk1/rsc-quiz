@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:background="@color/view">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/password_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/username_wrapper"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp">
+
+        <EditText
+            android:id="@+id/reg_password"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="#ffffff"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingLeft="30dp"
+            android:paddingRight="20dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txt_reg_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/messageText"
+        android:layout_marginTop="66dp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/confpassword_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/password_wrapper"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="2dp">
+
+        <EditText
+            android:id="@+id/reg_confpassword"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="#ffffff"
+            android:fontFamily="sans-serif"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingLeft="30dp"
+            android:paddingRight="20dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:height="50dp"
+        android:backgroundTint="@color/button"
+        android:backgroundTintMode="src_over"
+        android:minHeight="50dp"
+        android:stateListAnimator="@null"
+        android:text="@string/create_new_account"
+        android:textColor="@color/buttonText"
+        android:textSize="16sp"
+        android:background="@drawable/round_button"
+        android:layout_height="50dp"
+        android:layout_below="@+id/confpassword_wrapper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username_wrapper"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="149dp"
+        android:background="#ffffff"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/reg_username"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:background="#ffffff"
+            android:hint="@string/username"
+            android:maxLines="1"
+            android:nextFocusDown="@+id/password"
+            android:nextFocusRight="@+id/password"
+            android:paddingLeft="30dp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <ProgressBar
+        android:id="@+id/loader_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>
