@@ -1,0 +1,23 @@
+﻿<div *ngIf="modalVisible()" class="modal fade show in" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{modalConfirmService.title}}</h4>
+            </div>
+            <div class="modal-body modal-sm">
+                <p>{{modalConfirmService.message}}</p>
+                <div class="checkbox" *ngIf="modalConfirmService.needSpecialConfirmation">
+                    <label><input type="checkbox" [ngModel]="forceChecked" #forceCheckedCB (change)="forceChecked = forceCheckedCB.checked">{{modalConfirmService.specialConfirmationMessage}}</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="yes()"
+                        [disabled]="modalConfirmService.needSpecialConfirmation && !forceChecked">
+                    Yes
+                </button>
+                <button type="button" class="btn btn-danger" (click)="no()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

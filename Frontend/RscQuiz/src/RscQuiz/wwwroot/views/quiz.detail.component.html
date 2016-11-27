@@ -1,0 +1,31 @@
+﻿<div>
+    <template [ngIf]="getCurrentQuestion() == null">
+        <p>Quiz name: {{quiz.name}}</p>
+        <p>Description: {{quiz.description}}</p>
+
+        <template [ngIf]="quiz.isOpen">
+            <p>Waiting for teams...</p>
+        </template>
+
+        <template [ngIf]="isInProgress()">
+            <p>Quiz is running</p>
+        </template>
+
+        <p *ngIf="quiz.isOpen">Number of teams: {{getNumberOfTeams()}}</p>
+        <teams *ngIf="quiz.isOpen"></teams>
+        <div class="list-group">
+            <template ngFor let-question [ngForOf]="quiz.questions">
+                <a href="#/quizes" class="list-group-item list-group-item-action" (click)="openQuestion(question)">
+                    <question [question]="question"></question>
+                </a>
+            </template>
+        </div>
+        <button *ngIf="isInProgress() == false" [disabled]="canStartQuiz() == false" type="button" class="btn btn-success pull-right" (click)="startQuiz()">Start Quiz</button>
+        <button *ngIf="isInProgress()" type="button" class="btn btn-success pull-right" (click)="getNextQuestion()">Start next question</button>
+    </template>
+    <template [ngIf]="getCurrentQuestion() != null">
+        <p>Quiz: {{quiz.name}}</p>
+        <question-detail [question]="getCurrentQuestion()"></question-detail>
+    </template>
+</div>
+<button *ngIf="getCurrentQuestion() == null" type="button" class="btn btn-danger" (click)="closeQuiz()">Close quiz</button>
