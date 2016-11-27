@@ -24,7 +24,12 @@ var QuizDetailComponent = (function () {
         return this.quizService.getCurrentQuestion();
     };
     QuizDetailComponent.prototype.openQuestion = function (question) {
-        this.quizService.setCurrentQuestion(question);
+        if (this.quiz.isOpen == false) {
+            this.quizService.setCurrentQuestion(question);
+        }
+    };
+    QuizDetailComponent.prototype.getNextQuestion = function () {
+        this.quiz.questions.push({ text: "Next question" });
     };
     __decorate([
         core_1.Input(), 

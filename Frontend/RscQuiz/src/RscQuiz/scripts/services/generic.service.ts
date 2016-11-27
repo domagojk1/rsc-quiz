@@ -27,14 +27,14 @@ export class GenericService {
     }
 
     getObservableGet<T>(path: string, checkingSession = true): Observable<T> {
-        this.checkSession(checkingSession);
+        //this.checkSession(checkingSession);
         return this.http.get(
             GenericService.API_BASE_URL + path,
             { headers: this.getHeaders() })
             .map((response: Response) => <T>response.json())
     }
     getObservablePost<R>(path: string, object: any, checkingSession = true): Observable<R> {
-        this.checkSession(checkingSession);
+        //this.checkSession(checkingSession);
         return this.http.post(
             GenericService.API_BASE_URL + path,
             JSON.stringify(object),

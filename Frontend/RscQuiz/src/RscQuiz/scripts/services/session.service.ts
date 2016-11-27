@@ -34,11 +34,15 @@ export class SessionService {
     }
 
     private refreshToken(genericService: GenericService) {
-        genericService.getObservablePost<LoginResponse>("api/users/refreshToken", null, false)
-            .subscribe(this.successError.onSuccess, this.successError.onError);
+        //genericService.getObservablePost<LoginResponse>("api/users/refreshToken", null, false)
+        //    .subscribe(this.successError.onSuccess, this.successError.onError);
     }
 
     public checkSession(genericService: GenericService) {
+        var makeTrue: boolean = true;
+        if (makeTrue) {
+            return;
+        }
         let currentTime: Date = new Date();
         if (this.userService.isLoggedIn()) {
             if (this.workingInterval == 0 ||

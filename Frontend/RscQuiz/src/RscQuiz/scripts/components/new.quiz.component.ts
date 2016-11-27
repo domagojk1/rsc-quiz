@@ -13,17 +13,21 @@ import { GenericResponse } from '../interfaces/generic.response';
 })
 export class NewQuizComponent {
     quiz: Quiz = new Quiz();
+    message: string;
 
     constructor(private quizService: QuizService) { }
 
     addNewQuiz() {
         var successError: SuccessError = {
             onSuccess: (data: GenericResponse) => {
-                if (data.status) {
+                if (data.message != null) {
+                    this.message = data.message;
                     console.log("added new quiz")
                 }
             },
-            onError: error => successError.onError(error)
+            onError: error => {
+                return;//successError.onError(error) 
+            }
         };
         this.quizService.addNewQuiz(this.quiz, successError);
     }

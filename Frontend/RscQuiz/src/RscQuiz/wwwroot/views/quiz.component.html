@@ -1,3 +1,4 @@
 ﻿<p>Quiz ID: {{quiz.id}}</p>
 <p>Name: {{quiz.name}}</p>
 <p>Description: {{quiz.description}}</p>
+<button *ngIf="quiz.isOpen == false" class="btn btn-primary" (click)="startQuiz()">Start quiz</button>

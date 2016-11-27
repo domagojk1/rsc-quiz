@@ -35,13 +35,13 @@ var GenericService = (function () {
     };
     GenericService.prototype.getObservableGet = function (path, checkingSession) {
         if (checkingSession === void 0) { checkingSession = true; }
-        this.checkSession(checkingSession);
+        //this.checkSession(checkingSession);
         return this.http.get(GenericService.API_BASE_URL + path, { headers: this.getHeaders() })
             .map(function (response) { return response.json(); });
     };
     GenericService.prototype.getObservablePost = function (path, object, checkingSession) {
         if (checkingSession === void 0) { checkingSession = true; }
-        this.checkSession(checkingSession);
+        //this.checkSession(checkingSession);
         return this.http.post(GenericService.API_BASE_URL + path, JSON.stringify(object), { headers: this.getHeaders() })
             .map(function (res) { return res.json(); });
     };

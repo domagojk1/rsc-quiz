@@ -3,7 +3,7 @@
     <template [ngIf]="getCurrentQuiz() == null">
         <div class="list-group">
             <template ngFor let-quiz [ngForOf]="getQuizes()">
-                <a href="#/quizes" class="list-group-item list-group-item-action" (click)="openQuiz(quiz)">
+                <a href="#/quizes" class="list-group-item list-group-item-action" [class.active]="quiz.isOpen" (click)="openQuiz(quiz)">
                     <quiz [quiz]="quiz"></quiz>
                 </a>
             </template>

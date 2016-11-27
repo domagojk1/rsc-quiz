@@ -19,13 +19,17 @@ var NewQuizComponent = (function () {
         this.quiz = new quiz_1.Quiz();
     }
     NewQuizComponent.prototype.addNewQuiz = function () {
+        var _this = this;
         var successError = {
             onSuccess: function (data) {
-                if (data.status) {
+                if (data.message != null) {
+                    _this.message = data.message;
                     console.log("added new quiz");
                 }
             },
-            onError: function (error) { return successError.onError(error); }
+            onError: function (error) {
+                return; //successError.onError(error) 
+            }
         };
         this.quizService.addNewQuiz(this.quiz, successError);
     };

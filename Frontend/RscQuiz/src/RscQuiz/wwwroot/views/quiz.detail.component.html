@@ -10,6 +10,7 @@
                 </a>
             </template>
         </div>
+        <button *ngIf="quiz.isOpen" type="button" class="btn btn-success pull-right" (click)="getNextQuestion()">Start next question</button>
     </template>
     <template [ngIf]="getCurrentQuestion() != null">
         <p>Quiz: {{quiz.name}}</p>

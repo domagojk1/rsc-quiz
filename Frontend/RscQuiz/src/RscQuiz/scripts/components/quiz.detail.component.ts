@@ -24,6 +24,12 @@ export class QuizDetailComponent {
     }
 
     openQuestion(question: Question): void {
-        this.quizService.setCurrentQuestion(question);
+        if (this.quiz.isOpen == false) {
+            this.quizService.setCurrentQuestion(question);
+        }
+    }
+
+    getNextQuestion() {
+        this.quiz.questions.push({ text: "Next question" });
     }
 }

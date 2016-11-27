@@ -36,10 +36,14 @@ var SessionService = (function () {
         this.checkSession(genericService);
     };
     SessionService.prototype.refreshToken = function (genericService) {
-        genericService.getObservablePost("api/users/refreshToken", null, false)
-            .subscribe(this.successError.onSuccess, this.successError.onError);
+        //genericService.getObservablePost<LoginResponse>("api/users/refreshToken", null, false)
+        //    .subscribe(this.successError.onSuccess, this.successError.onError);
     };
     SessionService.prototype.checkSession = function (genericService) {
+        var makeTrue = true;
+        if (makeTrue) {
+            return;
+        }
         var currentTime = new Date();
         if (this.userService.isLoggedIn()) {
             if (this.workingInterval == 0 ||

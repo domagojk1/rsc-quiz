@@ -19,9 +19,9 @@ var QuizService = (function () {
         this.modalConfirmService = modalConfirmService;
         this.userService = userService;
         this.quizes = [];
-        var quiz1 = { id: 1, name: "Quiz 1", description: "This is quiz 1", questions: [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }] };
-        var quiz2 = { id: 2, name: "Quiz 2", description: "This is quiz 2", questions: [{ text: "Pitanje 2?" }] };
-        var quiz3 = { id: 3, name: "Quiz 3", description: "This is quiz 3", questions: [{ text: "Pitanje 3?" }] };
+        var quiz1 = { id: 1, name: "Quiz 1", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 1", isOpen: true, questions: [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }] };
+        var quiz2 = { id: 2, name: "Quiz 2", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 2", isOpen: false, questions: [{ text: "Pitanje 2?" }] };
+        var quiz3 = { id: 3, name: "Quiz 3", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 3", isOpen: false, questions: [{ text: "Pitanje 3?" }] };
         this.quizes.push(quiz1, quiz2, quiz3);
     }
     QuizService.prototype.getQuizes = function () {
@@ -42,6 +42,24 @@ var QuizService = (function () {
     QuizService.prototype.addNewQuiz = function (quiz, successError) {
         this.genericService.getObservablePost("api/Events/Add", quiz, false)
             .subscribe(successError.onSuccess, successError.onError);
+    };
+    QuizService.prototype.getMyQuizes = function () {
+        var _this = this;
+        this.genericService.getObservableGet("/api/Events/MyEvents")
+            .subscribe(function (quizes) {
+            _this.quizes = new Array();
+            quizes.forEach(function (quiz) {
+                if (quiz.questions == null) {
+                    quiz.questions = [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }];
+                }
+                _this.quizes.push(quiz);
+            });
+        });
+    };
+    QuizService.prototype.startQuiz = function (quiz) {
+        if (quiz != null) {
+            console.log("Quiz " + quiz.name + " started.");
+        }
     };
     QuizService = __decorate([
         core_1.Injectable(), 

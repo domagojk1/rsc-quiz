@@ -1,4 +1,4 @@
-﻿import {Component, Input} from '@angular/core';
+﻿import {Component, Input, OnInit} from '@angular/core';
 import {QuizComponent} from './quiz.component';
 import {QuizDetailComponent} from './quiz.detail.component';
 import { QuizService } from '../services/quiz.service';
@@ -9,11 +9,13 @@ import { Quiz } from '../classes/quiz'
     directives: [QuizComponent, QuizDetailComponent],
     templateUrl: '../views/quizes.component.html'
 })
-export class QuizesComponent {
-    quizes: Array<Quiz>;
+export class QuizesComponent implements OnInit {
 
     constructor(private quizService: QuizService) { }
 
+    ngOnInit() {
+        //this.quizService.getMyQuizes();
+    }
 
     getQuizes(): Quiz[]{
         return this.quizService.getQuizes();
