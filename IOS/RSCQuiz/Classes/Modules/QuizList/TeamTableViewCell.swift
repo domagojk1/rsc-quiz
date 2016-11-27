@@ -16,7 +16,7 @@ class TeamTableViewCell: UITableViewCell {
     var team: Team? {
         willSet {
             teamNameLabel.text = newValue?.name
-            teamMembersNumberLabel.text = String(describing: newValue!.users!.count)
+            teamMembersNumberLabel.text = "ID: \(newValue!.id!)"
         }
     }
     

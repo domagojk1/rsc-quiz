@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SwiftR
+import ObjectMapper
+import Foundation
 
 class QuestionViewController: UIViewController {
 
@@ -16,7 +19,13 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var answerButton: UIButton!
     
     var number: Int?
+    var time = 10
     var question: Question?
+    var timer: Timer!
+    
+    var chatHub: Hub?
+    var connection: SignalR?
+    var name: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +58,40 @@ class QuestionViewController: UIViewController {
         question?.answers = answers
         
         questionTableView.reloadData()
-        // Do any additional setup after loading the view.
+        
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                             target: self,
+                             selector: #selector(updateCounter),
+                             userInfo: nil,
+                             repeats: true)
+    }
+    
+    func updateCounter() {
+        if time == 0 {
+            timer.invalidate()
+            timer = nil
+            questionTableView.isUserInteractionEnabled = false
+            didTapAnswer()
+        } else {
+            time = time - 1
+            if time > 9 {
+                questionTime.text = "00:\(time)"
+            } else {
+                questionTime.text = "00:0\(time)"
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initialize()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let conn = connection {
+            conn.stop()
+        }
     }
     
     func didTapAnswer() {
@@ -67,12 +109,66 @@ class QuestionViewController: UIViewController {
             show(vc, sender: nil)
         }
     }
+    
+    func initialize() {
+        configureSignalR()
+        configureConnection()
+    }
+    
+    private func configureSignalR() {
+        SwiftR.useWKWebView = false
+        SwiftR.signalRVersion = .v2_2_1
+    }
+    
+    private func configureConnection() {
+        connection = SwiftR.connect("http://rsc2016quiz.azurewebsites.net/signalr") { [weak self] (connection) in
+            
+            connection.headers = ["User-Name": UserDefaultsHelper.currentUser!.name!]
+            
+            self?.chatHub = connection.createHubProxy("PostsHub")
+            
+            self?.chatHub?.on("sendNextQuestion", callback: { (response) in
+                print(response)
+                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
+                print("\(message!.username!) - \(message!.message!)")
+            })
+            
+            self?.chatHub?.on("SendNextQuestion", callback: { (response) in
+                print(response ?? "")
+                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
+                print("\(message!.username!) - \(message!.message!)")
+            })
+            
+            connection.starting = { print("Starting connection...") }
+            
+            connection.reconnecting = { print("Reconnectiong...") }
+            
+            connection.connected = { print("Connection ID: \(connection.connectionID!)") }
+            
+            connection.reconnected = { print("Reconnected.") }
+            
+            connection.disconnected = { print("Disconnected.") }
+            
+            connection.connectionSlow = { print("Connection slow...") }
+            
+            connection.error = { error in
+                print("Error: \(error)")
+                
+                if let source = error?["source"] as? String, source == "TimeoutException" {
+                    print("Connection timed out. Restarting...")
+                    connection.start()
+                }
+            }
+        }
+        connection?.start()
+    }
 }
 
 extension QuestionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        question?.answers?[indexPath.row].checked = !(question?.answers?[indexPath.row].checked)!
     }
 }
 
