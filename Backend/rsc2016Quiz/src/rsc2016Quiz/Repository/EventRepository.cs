@@ -21,6 +21,22 @@ namespace rsc2016Quiz.Repository
             Commit();
         }
 
+        public void OpenEvent(int id)
+        {
+            var evt = GetEventById(id);
+            evt.IsOpen = true;
+            _context.Update(evt);
+            Commit();
+        }
+
+        public void CloseEvent(int id)
+        {
+            var evt = GetEventById(id);
+            evt.IsOpen = false;
+            _context.Update(evt);
+            Commit();
+        }
+
         public List<Event> GetEventsForUser(string userId)
         {
             return _context.Events.Include(e => e.Teams).Where(e => e.UserId == userId).ToList();
@@ -35,6 +51,12 @@ namespace rsc2016Quiz.Repository
         {
             return _context.Events.SingleOrDefault(t => t.Id == id);
         }
+
+        public List<Event> GetEventByIdWithMembers(int id)
+        {
+            return _context.Events.Include(e => e.Teams).ThenInclude(t => t.TeamMembers).Where(e => e.Id == id).ToList();
+        }
+
 
         private void Commit()
         {

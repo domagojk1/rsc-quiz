@@ -21,6 +21,6 @@ namespace rsc2016Quiz.Models
         public int EventId { get; set; }
         public Event Event { get; set; }
 
-        public ICollection<User> TeamMembers { get; set; }
+        public ICollection<User> TeamMembers { get; set; } = new List<User>();
     }
 }

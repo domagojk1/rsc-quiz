@@ -11,6 +11,8 @@ using rsc2016Quiz.Models;
 using rsc2016Quiz.Repository;
 using rsc2016Quiz.SignalR;
 using Microsoft.AspNetCore.SignalR.Hubs;
+using rsc2016Quiz.Helpers;
+using rsc2016Quiz.Helpers.ResultModels;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,12 +24,14 @@ namespace rsc2016Quiz.Controllers
         private readonly IEventRepository _eventRepository;
         private readonly IUserRepository _userRepository;
         private readonly IConnectionManager _connectionManager;
+        private readonly IApiErrorHandler _apiErrorHandler;
 
-        public EventsController(IEventRepository eventRepository, IUserRepository userRepository, IConnectionManager connectionManager)
+        public EventsController(IEventRepository eventRepository, IUserRepository userRepository, IConnectionManager connectionManager, IApiErrorHandler apiErrorHandler)
         {
             _eventRepository = eventRepository;
             _userRepository = userRepository;
             _connectionManager = connectionManager;
+            _apiErrorHandler = apiErrorHandler;
         }
 
         [HttpGet("MyEvents")]
@@ -40,7 +44,7 @@ namespace rsc2016Quiz.Controllers
             return Ok(Mapper.Map<List<EventDto>>(_eventRepository.GetEventsForUser(user.Result.Id)));
         }
 
-        [Authorize]
+        [Authorize("Bearer")]
         [HttpPost("Add")]
         [Produces(typeof(MessageDto))]
         public IActionResult AddEvent([FromBody] EventDto quiz)
@@ -59,7 +63,22 @@ namespace rsc2016Quiz.Controllers
         {
             Post post = new Post();
             
-            return Ok(_connectionManager.GetHubContext<PostsHub>().Clients.All);
+            return Ok(new MessageDto("ok"));
+        }
+
+        [Authorize("Bearer")]
+        [HttpPost("StartEvent/{id}")]
+        public IActionResult StartEvent(int id)
+        {
+           var evt =
+            _eventRepository.GetEventById(id);
+            if (evt != null)
+            {
+                _eventRepository.CloseEvent(id);
+                _connectionManager.GetHubContext<PostsHub>().Clients.All.startQuiz("Quiz has started");
+                return Ok(evt);
+            }
+            return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Quiz with that id doesnt exist")));
         }
 
         [HttpGet("")]
@@ -67,6 +86,30 @@ namespace rsc2016Quiz.Controllers
         {
             var result = _eventRepository.GetAllEvents();
             return Ok(Mapper.Map<List<Event>>(result));
+        }
+
+        [HttpGet("OpenEvent/{id}")]
+        public IActionResult OpenEvent(int id)
+        {
+
+            var result = _eventRepository.GetEventById(id);
+            if (result != null)
+            {
+                _eventRepository.OpenEvent(id);
+            }
+            return Ok(Mapper.Map<EventDto>(result));
+        }
+
+        [HttpGet("GetTeams/{id}")]
+        public IActionResult GetEventTeam(int id)
+        {
+
+            var result = _eventRepository.GetEventById(id);
+            if (result != null)
+            {
+                return Ok(Mapper.Map<EventDto>(result));
+            }
+            return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Team with that id doesnt exist")));
         }
     }
 }

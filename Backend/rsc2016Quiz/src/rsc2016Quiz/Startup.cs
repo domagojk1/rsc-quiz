@@ -109,6 +109,7 @@ namespace rsc2016Quiz
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddTransient<IConnectionManager, ConnectionManager>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
             
 
             #endregion

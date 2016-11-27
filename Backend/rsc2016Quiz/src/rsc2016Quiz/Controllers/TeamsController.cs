@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
 using rsc2016Quiz.Dtos;
 using rsc2016Quiz.Helpers;
 using rsc2016Quiz.Helpers.ResultModels;
 using rsc2016Quiz.Models;
 using rsc2016Quiz.Repository;
+using rsc2016Quiz.SignalR;
 
 namespace rsc2016Quiz.Controllers
 {
@@ -19,13 +21,15 @@ namespace rsc2016Quiz.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IApiErrorHandler _apiErrorHandler;
         private readonly IEventRepository _eventRepository;
+        private readonly IConnectionManager _connectionManager;
 
-        public TeamsController(ITeamRepository teamRepository, IUserRepository userRepository, IApiErrorHandler apiErrorHandler, IEventRepository eventRepository)
+        public TeamsController(ITeamRepository teamRepository, IUserRepository userRepository, IApiErrorHandler apiErrorHandler, IEventRepository eventRepository, IConnectionManager connectionManager)
         {
             _teamRepository = teamRepository;
             _userRepository = userRepository;
             _apiErrorHandler = apiErrorHandler;
             _eventRepository = eventRepository;
+            _connectionManager = connectionManager;
         }
 
         [Authorize]
@@ -67,6 +71,8 @@ namespace rsc2016Quiz.Controllers
                     _teamRepository.Add(team);
                     return Ok(new TeamPwDto(password,team.Id,result.Id));
                 }
+                var ev = _eventRepository.GetEventById(model.EventId);
+                _connectionManager.GetHubContext<PostsHub>().Clients.All.sendTeamListSend(ev.Teams);
             }
             return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Event Has already started or doesnt exist")));
         }

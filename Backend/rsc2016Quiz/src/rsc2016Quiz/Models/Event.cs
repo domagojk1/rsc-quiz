@@ -25,7 +25,7 @@ namespace rsc2016Quiz.Models
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public ICollection<Team> Teams { get; set; }
+        public ICollection<Team> Teams { get; set; } = new List<Team>();
 
         
 

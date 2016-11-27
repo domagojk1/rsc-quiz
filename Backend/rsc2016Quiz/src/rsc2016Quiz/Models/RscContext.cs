@@ -12,6 +12,7 @@ namespace rsc2016Quiz.Models
         public DbSet<TeamMember> TeamMembers { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer>  Answers { get; set; }
+        public DbSet<EventQuestion> EventQuestions { get; set; }
 
         public RscContext(DbContextOptions<RscContext> options) : base(options)
         {
@@ -23,7 +24,8 @@ namespace rsc2016Quiz.Models
             modelBuilder.Entity<TeamMember>()
                 .HasKey(pf => new {pf.TeamId, pf.UserId});
 
-    
+            modelBuilder.Entity<EventQuestion>()
+                .HasKey(eq => new { eq.EventId, eq.QuestionId});
 
             base.OnModelCreating(modelBuilder);
         }
