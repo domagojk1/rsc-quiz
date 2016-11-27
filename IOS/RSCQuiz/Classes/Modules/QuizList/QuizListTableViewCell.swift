@@ -10,14 +10,24 @@ import UIKit
 
 class QuizListTableViewCell: UITableViewCell {
 
+    private var isOpen: Bool?
+    
     @IBOutlet weak var checkView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var quiz: Quiz? {
         willSet {
             nameLabel.text = newValue?.name
             descriptionLabel.text = newValue?.quizDescription
+            timeLabel.text = "18:00"
+            
+            if newValue?.isEnabled == true {
+                checkView.backgroundColor = UIColor.green
+            } else {
+                checkView.backgroundColor = UIColor.red
+            }
         }
     }
     

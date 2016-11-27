@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,58 +22,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-eT-buP">
-                                <rect key="frame" x="177" y="471" width="20" height="20"/>
-                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="FgA-X5-v5i">
-                                <rect key="frame" x="16" y="523" width="343" height="112"/>
+                                <rect key="frame" x="16" y="391" width="343" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dh-fx-VwV">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
                                         <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="DQL-Ty-tcD"/>
+                                            <constraint firstAttribute="height" constant="48" id="DQL-Ty-tcD"/>
                                         </constraints>
                                         <state key="normal" title="Facebook">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
+                                                <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBB-TC-YpA">
-                                        <rect key="frame" x="0.0" y="72" width="343" height="40"/>
+                                        <rect key="frame" x="0.0" y="80" width="343" height="48"/>
                                         <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Google">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
+                                                <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSC Quiz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-9C-3J3">
-                                <rect key="frame" x="120" y="68" width="134" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-eT-buP">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egzepšn@RSC2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9O-vV-Crf">
+                                <rect key="frame" x="132" y="645" width="111.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" image="RSC" translatesAutoresizingMaskIntoConstraints="NO" id="GeO-rB-5cJ">
+                                <rect key="frame" x="117" y="125" width="141" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="NgY-Bn-soS"/>
+                                    <constraint firstAttribute="width" secondItem="GeO-rB-5cJ" secondAttribute="height" multiplier="100:107" id="zAd-s5-AXb"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hf3-eT-buP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cld-uQ-Ikh"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FgA-X5-v5i" secondAttribute="bottom" constant="32" id="Jbg-JE-hHx"/>
-                            <constraint firstItem="FgA-X5-v5i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q1q-0k-lYP"/>
-                            <constraint firstItem="FgA-X5-v5i" firstAttribute="top" secondItem="Hf3-eT-buP" secondAttribute="bottom" constant="32" id="QDa-lY-Guk"/>
-                            <constraint firstItem="bcW-9C-3J3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="cZd-oT-J5a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FgA-X5-v5i" secondAttribute="trailing" id="g5T-Dd-qSs"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="FgA-X5-v5i" secondAttribute="leading" id="lCS-dm-Lez"/>
-                            <constraint firstItem="bcW-9C-3J3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="toT-U3-g4x"/>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="top" secondItem="GeO-rB-5cJ" secondAttribute="bottom" constant="48" id="JMW-cA-d53"/>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Kjz-7J-O5t"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QGi-aO-RkN"/>
+                            <constraint firstItem="G9O-vV-Crf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ViW-Re-1LM"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="top" secondItem="Hf3-eT-buP" secondAttribute="bottom" constant="48" id="gqv-6x-nLC"/>
+                            <constraint firstItem="FgA-X5-v5i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jNP-Jt-JVu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FgA-X5-v5i" secondAttribute="trailing" id="lVW-2D-Ddl"/>
+                            <constraint firstItem="Hf3-eT-buP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nkO-Am-GiH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G9O-vV-Crf" secondAttribute="bottom" constant="8" id="xzJ-NY-qHw"/>
+                            <constraint firstItem="GeO-rB-5cJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zki-CO-kiO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -138,5 +148,6 @@
     </scenes>
     <resources>
         <image name="QuizList" width="25" height="25"/>
+        <image name="RSC" width="93" height="100"/>
     </resources>
 </document>

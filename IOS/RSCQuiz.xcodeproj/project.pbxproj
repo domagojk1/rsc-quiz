@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4FCF46F61DE9F53E003A820F /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */; };
 		4FCF46F81DE9FEE5003A820F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F71DE9FEE5003A820F /* User.swift */; };
+		4FCF46FA1DEA27C5003A820F /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F91DEA27C5003A820F /* ChatMessage.swift */; };
+		4FCF46FD1DEA398F003A820F /* TeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46FC1DEA398F003A820F /* TeamListViewController.swift */; };
+		4FCF46FF1DEA3D24003A820F /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46FE1DEA3D24003A820F /* TeamTableViewCell.swift */; };
+		4FCF47011DEA3DA5003A820F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF47001DEA3DA5003A820F /* Team.swift */; };
+		4FCF47041DEA4941003A820F /* UIViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF47031DEA4941003A820F /* UIViewController+Popup.swift */; };
 		4FD7CCB61DE9CD3F004B239A /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB51DE9CD3F004B239A /* UserStore.swift */; };
 		4FD7CCB81DE9CD52004B239A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB71DE9CD52004B239A /* API.swift */; };
 		4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD7CCB91DE9CE16004B239A /* APIResponse.swift */; };
@@ -35,6 +40,11 @@
 /* Begin PBXFileReference section */
 		4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		4FCF46F71DE9FEE5003A820F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4FCF46F91DEA27C5003A820F /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		4FCF46FC1DEA398F003A820F /* TeamListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamListViewController.swift; sourceTree = "<group>"; };
+		4FCF46FE1DEA3D24003A820F /* TeamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		4FCF47001DEA3DA5003A820F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		4FCF47031DEA4941003A820F /* UIViewController+Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Popup.swift"; sourceTree = "<group>"; };
 		4FD7CCB51DE9CD3F004B239A /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		4FD7CCB71DE9CD52004B239A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4FD7CCB91DE9CE16004B239A /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -99,6 +109,24 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		4FCF46FB1DEA3968003A820F /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				4FCF46FC1DEA398F003A820F /* TeamListViewController.swift */,
+				4FCF46FE1DEA3D24003A820F /* TeamTableViewCell.swift */,
+				4FCF47001DEA3DA5003A820F /* Team.swift */,
+			);
+			name = Team;
+			sourceTree = "<group>";
+		};
+		4FCF47021DEA492D003A820F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4FCF47031DEA4941003A820F /* UIViewController+Popup.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		4FD7CCB31DE9CD03004B239A /* Stores */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,9 +149,11 @@
 		4FD7CCC11DE9D669004B239A /* QuizList */ = {
 			isa = PBXGroup;
 			children = (
+				4FCF46FB1DEA3968003A820F /* Team */,
 				4FD7CCC41DE9D6AC004B239A /* QuizList.storyboard */,
 				4FD7CCD21DE9E523004B239A /* QuizListViewController.swift */,
 				4FD7CCD41DE9E534004B239A /* QuizListTableViewCell.swift */,
+				4FCF46F91DEA27C5003A820F /* ChatMessage.swift */,
 			);
 			path = QuizList;
 			sourceTree = "<group>";
@@ -214,6 +244,7 @@
 		4FF288421DE99B3B006273C2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4FCF47021DEA492D003A820F /* Extensions */,
 				4FCF46F41DE9F51E003A820F /* Helpers */,
 				4FD7CCD61DE9E690004B239A /* Models */,
 				4FD7CCB31DE9CD03004B239A /* Stores */,
@@ -371,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCF46FA1DEA27C5003A820F /* ChatMessage.swift in Sources */,
 				4FCF46F61DE9F53E003A820F /* UserDefaultsHelper.swift in Sources */,
 				4FD7CCB61DE9CD3F004B239A /* UserStore.swift in Sources */,
 				4FF288301DE9969C006273C2 /* LoginViewController.swift in Sources */,
@@ -378,6 +410,9 @@
 				4FCF46F81DE9FEE5003A820F /* User.swift in Sources */,
 				4FD7CCBE1DE9D24B004B239A /* LoginPresenter.swift in Sources */,
 				4FD7CCBC1DE9CE88004B239A /* LoginResponse.swift in Sources */,
+				4FCF47041DEA4941003A820F /* UIViewController+Popup.swift in Sources */,
+				4FCF47011DEA3DA5003A820F /* Team.swift in Sources */,
+				4FCF46FF1DEA3D24003A820F /* TeamTableViewCell.swift in Sources */,
 				4FD7CCB81DE9CD52004B239A /* API.swift in Sources */,
 				4FD7CCC01DE9D257004B239A /* LoginInterfaces.swift in Sources */,
 				4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */,
@@ -387,6 +422,7 @@
 				4FD7CCCD1DE9DBBD004B239A /* SettingsViewController.swift in Sources */,
 				4FD7CCCF1DE9DBD2004B239A /* SettingsPresenter.swift in Sources */,
 				4FD7CCD31DE9E523004B239A /* QuizListViewController.swift in Sources */,
+				4FCF46FD1DEA398F003A820F /* TeamListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

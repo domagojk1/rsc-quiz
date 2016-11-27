@@ -13,4 +13,5 @@ class Quiz {
     
     var name: String?
     var quizDescription: String?
+    var isEnabled: Bool?
 }
