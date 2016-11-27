@@ -25,7 +25,18 @@ class QuizListViewController: UIViewController {
         super.viewDidLoad()
         quizListTableView.delegate = self
         quizListTableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         initialize()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let conn = connection {
+            conn.stop()
+        }
     }
     
     func initialize() {
@@ -46,21 +57,14 @@ class QuizListViewController: UIViewController {
             self?.chatHub = connection.createHubProxy("PostsHub")
             
             self?.chatHub?.on("send", callback: { (response) in
+                print("send")
                 print(response)
-                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
-                print("\(message!.username!) - \(message!.message!)")
-            })
-            
-            self?.chatHub?.on("SendQuizList", callback: { (response) in
-                print(response)
-                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
-                print("\(message!.username!) - \(message!.message!)")
-            })
-            
-            self?.chatHub?.on("sendQuizList", callback: { (response) in
-                print(response)
-                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
-                print("\(message!.username!) - \(message!.message!)")
+                // let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
+                // print("\(message!.username!) - \(message!.message!)")
+                
+                let quezes = Mapper<Quiz>().mapArray(JSONObject: response)
+                self?.quizList = quezes!
+                self?.quizListTableView.reloadData()
             })
             
             connection.starting = { print("Starting connection...") }

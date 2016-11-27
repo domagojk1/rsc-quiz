@@ -9,6 +9,7 @@
 import UIKit
 import SwiftR
 import ObjectMapper
+import Foundation
 
 class QuestionViewController: UIViewController {
 
@@ -18,7 +19,9 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var answerButton: UIButton!
     
     var number: Int?
+    var time = 10
     var question: Question?
+    var timer: Timer!
     
     var chatHub: Hub?
     var connection: SignalR?
@@ -55,8 +58,40 @@ class QuestionViewController: UIViewController {
         question?.answers = answers
         
         questionTableView.reloadData()
-        // Do any additional setup after loading the view.
+        
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                             target: self,
+                             selector: #selector(updateCounter),
+                             userInfo: nil,
+                             repeats: true)
+    }
+    
+    func updateCounter() {
+        if time == 0 {
+            timer.invalidate()
+            timer = nil
+            questionTableView.isUserInteractionEnabled = false
+            didTapAnswer()
+        } else {
+            time = time - 1
+            if time > 9 {
+                questionTime.text = "00:\(time)"
+            } else {
+                questionTime.text = "00:0\(time)"
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         initialize()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let conn = connection {
+            conn.stop()
+        }
     }
     
     func didTapAnswer() {
@@ -133,6 +168,7 @@ extension QuestionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        question?.answers?[indexPath.row].checked = !(question?.answers?[indexPath.row].checked)!
     }
 }
 

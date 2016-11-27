@@ -27,7 +27,18 @@ class TeamListViewController: UIViewController {
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
         teamsTableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         initialize()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let conn = connection {
+            conn.stop()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

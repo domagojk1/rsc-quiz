@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +20,28 @@
                     <view key="view" contentMode="scaleToFill" id="Bbg-73-jfD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty" translatesAutoresizingMaskIntoConstraints="NO" id="yQM-LP-r9d">
+                                <rect key="frame" x="112" y="258" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yQM-LP-r9d" secondAttribute="height" multiplier="1:1" id="Irk-Nr-nIL"/>
+                                    <constraint firstAttribute="height" constant="150" id="fvv-ek-klm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obh-q0-U62">
+                                <rect key="frame" x="140.5" y="432" width="94" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="obh-q0-U62" firstAttribute="top" secondItem="yQM-LP-r9d" secondAttribute="bottom" constant="24" id="JWy-KI-8SH"/>
+                            <constraint firstItem="yQM-LP-r9d" firstAttribute="centerY" secondItem="Bbg-73-jfD" secondAttribute="centerY" id="akb-nM-dmR"/>
+                            <constraint firstItem="obh-q0-U62" firstAttribute="centerX" secondItem="Bbg-73-jfD" secondAttribute="centerX" id="df4-7z-uaH"/>
+                            <constraint firstItem="yQM-LP-r9d" firstAttribute="centerX" secondItem="Bbg-73-jfD" secondAttribute="centerX" id="gGW-HR-Tnw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="k2y-6A-Kqt"/>
                 </viewController>
@@ -54,6 +76,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Empty" width="150" height="150"/>
         <image name="History" width="25" height="25"/>
     </resources>
 </document>
