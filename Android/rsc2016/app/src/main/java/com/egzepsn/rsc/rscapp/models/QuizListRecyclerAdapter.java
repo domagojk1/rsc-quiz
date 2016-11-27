@@ -38,7 +38,7 @@ public class QuizListRecyclerAdapter extends RecyclerView.Adapter<QuizListRecycl
         holder.quizName.setText(events.get(position).getName());
         holder.quizDescription.setText(events.get(position).getDescription());
         holder.quizTime.setText(events.get(position).getDateTime());
-        if (events.get(position).isOpen()) holder.cardView.setBackgroundColor(Color.parseColor("#EC407A"));
+        if (events.get(position).isOpen()) holder.cardView.setBackgroundColor(Color.parseColor("#2196F3"));
     }
 
     @Override

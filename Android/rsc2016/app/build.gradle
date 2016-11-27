@@ -51,6 +51,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.edwardvanraak:MaterialBarcodeScanner:0.0.6-ALPHA'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.bigmercu.cBox:cbox:1.08'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile(name: 'signalr-client-sdk-android-release', ext: 'aar')
     testCompile 'junit:junit:4.12'

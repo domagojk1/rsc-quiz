@@ -20,6 +20,7 @@ import com.egzepsn.rsc.rscapp.models.CreateTeam;
 import com.egzepsn.rsc.rscapp.models.Event;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizListFragment;
 import com.egzepsn.rsc.rscapp.modules.main.pages.QuizPagerAdapter;
+import com.egzepsn.rsc.rscapp.modules.main.quiz.QuestionFragment;
 import com.egzepsn.rsc.rscapp.modules.main.quiz.QuizFragment;
 import com.egzepsn.rsc.rscapp.modules.main.teams.NewTeamDialog;
 import com.egzepsn.rsc.rscapp.modules.main.teams.TeamsFragment;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class MainActivity extends BaseActivity implements QuizListFragment.OnItemSelectedListener, NewTeamDialog.OnJoinedTeamListener {
+public class MainActivity extends BaseActivity implements QuizListFragment.OnItemSelectedListener, NewTeamDialog.OnJoinedTeamListener, QuizFragment.OnFinishedListener {
     private Unbinder unbinder;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -81,6 +82,14 @@ public class MainActivity extends BaseActivity implements QuizListFragment.OnIte
     public void onJoin() {
         QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new QuizFragment(), getString(R.string.quizListTitle));
+        adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFinish() {
+        QuizPagerAdapter adapter = new QuizPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new QuestionFragment(), getString(R.string.quizListTitle));
         adapter.addFragment(Creator.getFragmentFromEnum(FragmentEnum.SettingsFragment), getString(R.string.settings));
         viewPager.setAdapter(adapter);
     }
