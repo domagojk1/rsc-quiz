@@ -1,4 +1,5 @@
 ﻿import { Question } from './question'
+import { Team } from './team'
 
 export class Quiz {
     id: number = 0;
@@ -9,4 +10,5 @@ export class Quiz {
     maxMembersPerTeam: number = 4;
     isOpen: boolean = false;
     questions: [Question];
+    teams: Array<Team>;
 }

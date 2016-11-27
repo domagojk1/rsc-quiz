@@ -10,21 +10,27 @@ import { UserService } from './user.service';
 import { ModalConfirmData } from '../interfaces/modal.confirm.data';
 import { Quiz } from '../classes/quiz';
 import { Question } from '../classes/question';
+import { Team } from '../classes/team';
 
 @Injectable()
 export class QuizService {
     private quizes: Array<Quiz>;
     private selectedQuiz: Quiz;
     private selectedQuestion: Question;
+    private teams: Array<Team>;
 
     constructor(private genericService: GenericService,
         private modalConfirmService: ModalConfirmService,
         private userService: UserService) {
         this.quizes = [];
-        var quiz1: Quiz = { id: 1, name: "Quiz 1", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 1", isOpen: true, questions: [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }] };
-        var quiz2: Quiz = { id: 2, name: "Quiz 2", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 2", isOpen: false, questions: [{ text: "Pitanje 2?" }] };
-        var quiz3: Quiz = { id: 3, name: "Quiz 3", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 3", isOpen: false, questions: [{ text: "Pitanje 3?" }] };
-        this.quizes.push(quiz1, quiz2, quiz3);
+
+
+        setInterval(() => {
+            if (this.getCurrentQuiz() != null) {
+                console.log("fetching teams");
+                this.refreshTeams(this.getCurrentQuiz().id);
+            }
+        }, 1000 * 5);
     }
 
     getQuizes(): Quiz[] {
@@ -32,6 +38,7 @@ export class QuizService {
     }    
 
     setCurrentQuiz(quiz: Quiz): void {
+        this.teams = [];
         this.selectedQuiz = quiz;
     }
 
@@ -58,16 +65,42 @@ export class QuizService {
                 this.quizes = new Array<Quiz>();
                 quizes.forEach(quiz => {
                     if (quiz.questions == null) {
-                        quiz.questions = [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }]
+                        quiz.questions = [{ text: "Pitanje 1?" }];
+                        quiz.questions.pop();
                     }
                     this.quizes.push(quiz);
                 });
             });
     }
 
+    refreshTeams(eventId: number): void {
+        this.genericService.getObservableGet<Quiz>("/api/Events/GetTeams/" + eventId)
+            .subscribe(quiz => {
+                this.teams = quiz.teams;
+            });
+    }
+
+    openQuiz(quiz: Quiz) {
+        if (quiz != null) {
+            quiz.isOpen = true;
+            this.genericService.getObservableGet<Array<Team>>("/api/Events/OpenEvent/" + quiz.id)
+                .subscribe(teams => {
+                    //this.teams = teams;
+                });
+        }
+    }
+
     startQuiz(quiz: Quiz) {
         if (quiz != null) {
-            console.log("Quiz " + quiz.name + " started.");
+            quiz.isOpen = false;
+            this.genericService.getObservableGet<Array<Team>>("/api/Events/StartEvent/" + quiz.id)
+                .subscribe(teams => {
+                    //this.teams = teams;
+                });
         }
+    }
+
+    getTeams(): Team[] {
+        return this.teams;
     }
 }

@@ -1,18 +1,17 @@
 ﻿import {Component, Input} from '@angular/core';
 import { Quiz} from '../classes/quiz'
 import { QuizService } from '../services/quiz.service';
+import { Team } from '../classes/team'
 
 @Component({
-    selector: 'quiz',
-    templateUrl: '../views/quiz.component.html'
+    selector: 'teams',
+    templateUrl: '../views/teams.component.html'
 })
-export class QuizComponent {
-    @Input() quiz: Quiz;
+export class TeamsComponent {
 
     constructor(private quizService: QuizService) { }
 
-    openQuiz() {
-        this.quiz.isOpen = true;
-        this.quizService.openQuiz(this.quiz);
+    getTeams() : Team[] {
+        return this.quizService.getTeams();
     }
 }

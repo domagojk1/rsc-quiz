@@ -1,8 +1,9 @@
 ﻿<div>
     <template [ngIf]="getCurrentQuestion() == null">
-        <p>Quiz ID: {{quiz.id}}</p>
         <p>Name: {{quiz.name}}</p>
         <p>Description: {{quiz.description}}</p>
+        <p *ngIf="quiz.isOpen">Number of teams: {{getNumberOfTeams()}}</p>
+        <teams *ngIf="quiz.isOpen"></teams>
         <div class="list-group">
             <template ngFor let-question [ngForOf]="quiz.questions">
                 <a href="#/quizes" class="list-group-item list-group-item-action" (click)="openQuestion(question)">
@@ -10,7 +11,8 @@
                 </a>
             </template>
         </div>
-        <button *ngIf="quiz.isOpen" type="button" class="btn btn-success pull-right" (click)="getNextQuestion()">Start next question</button>
+        <button *ngIf="canStartQuiz()" type="button" class="btn btn-success pull-right" (click)="startQuiz()">Start Quiz</button>
+        <button *ngIf="isInProgress()" type="button" class="btn btn-success pull-right" (click)="getNextQuestion()">Start next question</button>
     </template>
     <template [ngIf]="getCurrentQuestion() != null">
         <p>Quiz: {{quiz.name}}</p>

@@ -9,6 +9,7 @@
 /// <reference path="appscripts/classes/question.js" />
 /// <reference path="appscripts/classes/quiz - copy.js" />
 /// <reference path="appscripts/classes/quiz.js" />
+/// <reference path="appscripts/classes/team.js" />
 /// <reference path="appscripts/classes/user - copy.js" />
 /// <reference path="appscripts/classes/user.js" />
 /// <reference path="appscripts/components/app.component.js" />
@@ -27,6 +28,7 @@
 /// <reference path="appscripts/components/quizes - copy.component.js" />
 /// <reference path="appscripts/components/quizes.component.js" />
 /// <reference path="appscripts/components/register.component.js" />
+/// <reference path="appscripts/components/teams.component.js" />
 /// <reference path="appscripts/components/user.component.js" />
 /// <reference path="appscripts/functions/error.handler.js" />
 /// <reference path="appscripts/interfaces/generic.response.js" />

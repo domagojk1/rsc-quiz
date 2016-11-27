@@ -9,28 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var quiz_1 = require('../classes/quiz');
 var quiz_service_1 = require('../services/quiz.service');
-var QuizComponent = (function () {
-    function QuizComponent(quizService) {
+var TeamsComponent = (function () {
+    function TeamsComponent(quizService) {
         this.quizService = quizService;
     }
-    QuizComponent.prototype.openQuiz = function () {
-        this.quiz.isOpen = true;
-        this.quizService.openQuiz(this.quiz);
+    TeamsComponent.prototype.getTeams = function () {
+        return this.quizService.getTeams();
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', quiz_1.Quiz)
-    ], QuizComponent.prototype, "quiz", void 0);
-    QuizComponent = __decorate([
+    TeamsComponent = __decorate([
         core_1.Component({
-            selector: 'quiz',
-            templateUrl: '../views/quiz.component.html'
+            selector: 'teams',
+            templateUrl: '../views/teams.component.html'
         }), 
         __metadata('design:paramtypes', [quiz_service_1.QuizService])
-    ], QuizComponent);
-    return QuizComponent;
+    ], TeamsComponent);
+    return TeamsComponent;
 }());
-exports.QuizComponent = QuizComponent;
-//# sourceMappingURL=quiz.component.js.map
+exports.TeamsComponent = TeamsComponent;
+//# sourceMappingURL=teams.component.js.map

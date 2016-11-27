@@ -15,19 +15,23 @@ var modal_confirm_service_1 = require('./modal.confirm.service');
 var user_service_1 = require('./user.service');
 var QuizService = (function () {
     function QuizService(genericService, modalConfirmService, userService) {
+        var _this = this;
         this.genericService = genericService;
         this.modalConfirmService = modalConfirmService;
         this.userService = userService;
         this.quizes = [];
-        var quiz1 = { id: 1, name: "Quiz 1", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 1", isOpen: true, questions: [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }] };
-        var quiz2 = { id: 2, name: "Quiz 2", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 2", isOpen: false, questions: [{ text: "Pitanje 2?" }] };
-        var quiz3 = { id: 3, name: "Quiz 3", place: "", dateTime: "", maxMembersPerTeam: 4, description: "This is quiz 3", isOpen: false, questions: [{ text: "Pitanje 3?" }] };
-        this.quizes.push(quiz1, quiz2, quiz3);
+        setInterval(function () {
+            if (_this.getCurrentQuiz() != null) {
+                console.log("fetching teams");
+                _this.refreshTeams(_this.getCurrentQuiz().id);
+            }
+        }, 1000 * 5);
     }
     QuizService.prototype.getQuizes = function () {
         return this.quizes;
     };
     QuizService.prototype.setCurrentQuiz = function (quiz) {
+        this.teams = [];
         this.selectedQuiz = quiz;
     };
     QuizService.prototype.getCurrentQuiz = function () {
@@ -50,16 +54,40 @@ var QuizService = (function () {
             _this.quizes = new Array();
             quizes.forEach(function (quiz) {
                 if (quiz.questions == null) {
-                    quiz.questions = [{ text: "Pitanje 1?" }, { text: "Pitanje 2?" }, { text: "Pitanje 3?" }];
+                    quiz.questions = [{ text: "Pitanje 1?" }];
+                    quiz.questions.pop();
                 }
                 _this.quizes.push(quiz);
             });
         });
     };
+    QuizService.prototype.refreshTeams = function (eventId) {
+        var _this = this;
+        this.genericService.getObservableGet("/api/Events/GetTeams/" + eventId)
+            .subscribe(function (quiz) {
+            _this.teams = quiz.teams;
+        });
+    };
+    QuizService.prototype.openQuiz = function (quiz) {
+        if (quiz != null) {
+            quiz.isOpen = true;
+            this.genericService.getObservableGet("/api/Events/OpenEvent/" + quiz.id)
+                .subscribe(function (teams) {
+                //this.teams = teams;
+            });
+        }
+    };
     QuizService.prototype.startQuiz = function (quiz) {
         if (quiz != null) {
-            console.log("Quiz " + quiz.name + " started.");
+            quiz.isOpen = false;
+            this.genericService.getObservableGet("/api/Events/StartEvent/" + quiz.id)
+                .subscribe(function (teams) {
+                //this.teams = teams;
+            });
         }
+    };
+    QuizService.prototype.getTeams = function () {
+        return this.teams;
     };
     QuizService = __decorate([
         core_1.Injectable(), 

@@ -17,7 +17,7 @@ var QuizesComponent = (function () {
         this.quizService = quizService;
     }
     QuizesComponent.prototype.ngOnInit = function () {
-        //this.quizService.getMyQuizes();
+        this.quizService.getMyQuizes();
     };
     QuizesComponent.prototype.getQuizes = function () {
         return this.quizService.getQuizes();

@@ -10,9 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var quiz_1 = require('../classes/quiz');
+var quiz_service_1 = require('../services/quiz.service');
 var QuizComponent = (function () {
-    function QuizComponent() {
+    function QuizComponent(quizService) {
+        this.quizService = quizService;
     }
+    QuizComponent.prototype.startQuiz = function () {
+        this.quiz.isOpen = true;
+        this.quizService.startQuiz(this.quiz);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', quiz_1.Quiz)
@@ -22,7 +28,7 @@ var QuizComponent = (function () {
             selector: 'quiz',
             templateUrl: '../views/quiz.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [quiz_service_1.QuizService])
     ], QuizComponent);
     return QuizComponent;
 }());

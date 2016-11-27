@@ -13,6 +13,7 @@ var quiz_1 = require('../classes/quiz');
 var quiz_service_1 = require('../services/quiz.service');
 var question_component_1 = require('./question.component');
 var question_detail_component_1 = require('./question.detail.component');
+var teams_component_1 = require('./teams.component');
 var QuizDetailComponent = (function () {
     function QuizDetailComponent(quizService) {
         this.quizService = quizService;
@@ -28,8 +29,22 @@ var QuizDetailComponent = (function () {
             this.quizService.setCurrentQuestion(question);
         }
     };
+    QuizDetailComponent.prototype.startQuiz = function () {
+        if (this.quizService.getTeams() != null && this.quizService.getTeams().length > 1) {
+            this.quizService.startQuiz(this.quiz);
+        }
+    };
+    QuizDetailComponent.prototype.canStartQuiz = function () {
+        return this.quizService.getTeams() != null && this.quizService.getTeams().length > 1;
+    };
+    QuizDetailComponent.prototype.isInProgress = function () {
+        return this.quizService.getTeams() != null && this.quizService.getTeams().length > 1 && this.quiz.isOpen == false;
+    };
     QuizDetailComponent.prototype.getNextQuestion = function () {
         this.quiz.questions.push({ text: "Next question" });
+    };
+    QuizDetailComponent.prototype.getNumberOfTeams = function () {
+        return this.quizService.getTeams() != null ? this.quizService.getTeams().length : 0;
     };
     __decorate([
         core_1.Input(), 
@@ -38,7 +53,7 @@ var QuizDetailComponent = (function () {
     QuizDetailComponent = __decorate([
         core_1.Component({
             selector: 'quiz-detail',
-            directives: [question_component_1.QuestionComponent, question_detail_component_1.QuestionDetailComponent],
+            directives: [question_component_1.QuestionComponent, question_detail_component_1.QuestionDetailComponent, teams_component_1.TeamsComponent],
             templateUrl: '../views/quiz.detail.component.html'
         }), 
         __metadata('design:paramtypes', [quiz_service_1.QuizService])
