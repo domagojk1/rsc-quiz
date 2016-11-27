@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ObjectMapper
+import SwiftR
 
 class TeamListViewController: UIViewController {    
     
@@ -15,12 +17,17 @@ class TeamListViewController: UIViewController {
     var quiz: Quiz?
     var teamList: [Team]?
     
+    var chatHub: Hub?
+    var connection: SignalR?
+    var name: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         teamsTableView.delegate = self
         teamsTableView.dataSource = self
         teamsTableView.reloadData()
+        initialize()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +59,59 @@ class TeamListViewController: UIViewController {
                 self.showPopUpWith(goIn: false, title: "Error with adding", message: "You must enter team name and password.")
             }
         }
+    }
+    
+    func initialize() {
+        configureSignalR()
+        configureConnection()
+    }
+    
+    private func configureSignalR() {
+        SwiftR.useWKWebView = false
+        SwiftR.signalRVersion = .v2_2_1
+    }
+    
+    private func configureConnection() {
+        connection = SwiftR.connect("http://rsc2016quiz.azurewebsites.net/signalr") { [weak self] (connection) in
+            
+            connection.headers = ["User-Name": UserDefaultsHelper.currentUser!.name!]
+            
+            self?.chatHub = connection.createHubProxy("PostsHub")
+            
+            self?.chatHub?.on("sendTeamList", callback: { (response) in
+                print(response)
+                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
+                print("\(message!.username!) - \(message!.message!)")
+            })
+            
+            self?.chatHub?.on("SendTeamList", callback: { (response) in
+                print(response ?? "")
+                let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
+                print("\(message!.username!) - \(message!.message!)")
+            })
+            
+            connection.starting = { print("Starting connection...") }
+            
+            connection.reconnecting = { print("Reconnectiong...") }
+            
+            connection.connected = { print("Connection ID: \(connection.connectionID!)") }
+            
+            connection.reconnected = { print("Reconnected.") }
+            
+            connection.disconnected = { print("Disconnected.") }
+            
+            connection.connectionSlow = { print("Connection slow...") }
+            
+            connection.error = { error in
+                print("Error: \(error)")
+                
+                if let source = error?["source"] as? String, source == "TimeoutException" {
+                    print("Connection timed out. Restarting...")
+                    connection.start()
+                }
+            }
+        }
+        connection?.start()
     }
     
     fileprivate func addMemberToTeam(team: Team, row: Int) {

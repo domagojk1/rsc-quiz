@@ -28,6 +28,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         presenter = LoginPresenter(view: self, userStore: UserStore())
         initializeUI()
+        
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     // MARK: - Public methods
