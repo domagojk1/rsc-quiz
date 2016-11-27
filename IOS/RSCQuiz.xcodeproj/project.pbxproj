@@ -10,6 +10,9 @@
 		4F0F58E41DEA879E00B48F28 /* EventsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58E31DEA879E00B48F28 /* EventsStore.swift */; };
 		4F0F58E61DEA892E00B48F28 /* EventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58E51DEA892E00B48F28 /* EventsResponse.swift */; };
 		4F0F58E81DEA905700B48F28 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58E71DEA905700B48F28 /* UIViewController+Spinner.swift */; };
+		4F0F58EB1DEA91E900B48F28 /* TeamsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58EA1DEA91E900B48F28 /* TeamsStore.swift */; };
+		4F0F58ED1DEA972700B48F28 /* CreateTeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58EC1DEA972700B48F28 /* CreateTeamResponse.swift */; };
+		4F0F58EF1DEAA24D00B48F28 /* JoinTeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F58EE1DEAA24D00B48F28 /* JoinTeamResponse.swift */; };
 		4FCF46F61DE9F53E003A820F /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */; };
 		4FCF46F81DE9FEE5003A820F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F71DE9FEE5003A820F /* User.swift */; };
 		4FCF46FA1DEA27C5003A820F /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF46F91DEA27C5003A820F /* ChatMessage.swift */; };
@@ -49,6 +52,9 @@
 		4F0F58E31DEA879E00B48F28 /* EventsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsStore.swift; sourceTree = "<group>"; };
 		4F0F58E51DEA892E00B48F28 /* EventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsResponse.swift; sourceTree = "<group>"; };
 		4F0F58E71DEA905700B48F28 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
+		4F0F58EA1DEA91E900B48F28 /* TeamsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsStore.swift; sourceTree = "<group>"; };
+		4F0F58EC1DEA972700B48F28 /* CreateTeamResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamResponse.swift; sourceTree = "<group>"; };
+		4F0F58EE1DEAA24D00B48F28 /* JoinTeamResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamResponse.swift; sourceTree = "<group>"; };
 		4FCF46F51DE9F53E003A820F /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		4FCF46F71DE9FEE5003A820F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4FCF46F91DEA27C5003A820F /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = ../../Modules/QuizList/ChatMessage.swift; sourceTree = "<group>"; };
@@ -126,6 +132,16 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
+		4F0F58E91DEA91DB00B48F28 /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F58EA1DEA91E900B48F28 /* TeamsStore.swift */,
+				4F0F58EC1DEA972700B48F28 /* CreateTeamResponse.swift */,
+				4F0F58EE1DEAA24D00B48F28 /* JoinTeamResponse.swift */,
+			);
+			name = Teams;
+			sourceTree = "<group>";
+		};
 		4FCF46F41DE9F51E003A820F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +198,7 @@
 				4FD7CCB91DE9CE16004B239A /* APIResponse.swift */,
 				4FD7CCB41DE9CD08004B239A /* Users */,
 				4F0F58E21DEA877B00B48F28 /* Events */,
+				4F0F58E91DEA91DB00B48F28 /* Teams */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -469,13 +486,16 @@
 				4F0F58E61DEA892E00B48F28 /* EventsResponse.swift in Sources */,
 				4FD7CCC01DE9D257004B239A /* LoginInterfaces.swift in Sources */,
 				4FD7CCBA1DE9CE16004B239A /* APIResponse.swift in Sources */,
+				4F0F58EB1DEA91E900B48F28 /* TeamsStore.swift in Sources */,
 				4FD7CCD11DE9DC40004B239A /* SettingsInterfaces.swift in Sources */,
 				4FCF47101DEA80F8003A820F /* QuizResultViewController.swift in Sources */,
 				4FF2882E1DE9969C006273C2 /* AppDelegate.swift in Sources */,
 				4FD7CCD51DE9E534004B239A /* QuizListTableViewCell.swift in Sources */,
+				4F0F58EF1DEAA24D00B48F28 /* JoinTeamResponse.swift in Sources */,
 				4FD7CCCD1DE9DBBD004B239A /* SettingsViewController.swift in Sources */,
 				4FD7CCCF1DE9DBD2004B239A /* SettingsPresenter.swift in Sources */,
 				4FD7CCD31DE9E523004B239A /* QuizListViewController.swift in Sources */,
+				4F0F58ED1DEA972700B48F28 /* CreateTeamResponse.swift in Sources */,
 				4F0F58E41DEA879E00B48F28 /* EventsStore.swift in Sources */,
 				4FCF470A1DEA66A4003A820F /* QuestionTableViewCell.swift in Sources */,
 				4F0F58E81DEA905700B48F28 /* UIViewController+Spinner.swift in Sources */,

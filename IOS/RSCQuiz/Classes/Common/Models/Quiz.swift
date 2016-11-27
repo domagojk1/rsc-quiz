@@ -35,6 +35,6 @@ extension Quiz: Mappable {
         dateTime <- map["dateTime"]
         quizDescription <- map["description"]
         isOpen <- map["isOpen"]
-        // teams <- map["teams"]
+        teams <- map["teams"]
     }
 }

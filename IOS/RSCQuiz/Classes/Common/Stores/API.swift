@@ -40,9 +40,15 @@ struct API {
     
     struct Teams {
         
-        static var teamUrl: String {
+        static var createTeam: String {
             get {
-                return baseUrl.appending("/api/Teams")
+                return baseUrl.appending("/api/Teams/Create")
+            }
+        }
+        
+        static var joinTeam: String {
+            get {
+                return baseUrl.appending("/api/Teams/join")
             }
         }
     }

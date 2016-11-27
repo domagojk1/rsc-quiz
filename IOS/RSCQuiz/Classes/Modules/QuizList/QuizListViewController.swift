@@ -29,13 +29,14 @@ class QuizListViewController: UIViewController {
         configureConnection()
     }
     
+    func initializeUI() {
+        
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
-    }
-    
-    func initializeUI() {
-        
     }
     
     func fetchData() {
@@ -61,6 +62,8 @@ class QuizListViewController: UIViewController {
             let vc = segue.destination as! TeamListViewController
             let index = sender as! Int
             vc.title = quizList[index].name
+            vc.quiz = quizList[index]
+            vc.teamList = quizList[index].teams
         }
     }
     
@@ -76,21 +79,17 @@ class QuizListViewController: UIViewController {
             
             self?.chatHub = connection.createHubProxy("PostsHub")
             
-            self?.chatHub?.on("send", callback: { [weak self] (response) in
-                print(response)
+            self?.chatHub?.on("send", callback: { (response) in
+                print(response ?? "")
                 let message = Mapper<ChatMessage>().map(JSON: response?.first as! [String : Any])
                 print("\(message!.username!) - \(message!.message!)")
             })
             
-            connection.starting = { [weak self] in
-                print("Starting connection...")
-            }
+            connection.starting = { print("Starting connection...") }
             
             connection.reconnecting = { print("Reconnectiong...") }
             
-            connection.connected = { [weak self] in
-                print("Connection ID: \(connection.connectionID!)")
-            }
+            connection.connected = { print("Connection ID: \(connection.connectionID!)") }
             
             connection.reconnected = { print("Reconnected.") }
             
@@ -119,7 +118,7 @@ extension QuizListViewController: UITableViewDelegate {
         if quiz.isOpen == true {
             performSegue(withIdentifier: "openTeamList", sender: indexPath.row)
         } else {
-            showPopUpWith(title: "Quiz closed", message: "Quiz is currently closed. Come again later :)")
+            showPopUpWith(goIn: false, title: "Quiz closed", message: "Quiz is currently closed. Come again later :)")
         }
     }
 }
