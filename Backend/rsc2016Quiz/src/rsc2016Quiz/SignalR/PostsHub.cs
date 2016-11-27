@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -78,7 +79,17 @@ namespace rsc2016Quiz.SignalR
             Clients.All.broadcastMessage(events);
         }
 
-        public void SendTeamListSend(ICollection<Team> teams)
+        public void Send(User user)
+        {
+            
+            user.Id = "dasdas";
+            // Call the broadcastMessage method to update clients.            
+            string fromUser;
+            FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
+            Clients.All.broadcastMessage(new ChatMessage() { UserName = fromUser, Message = "dasdas", user = user});
+        }
+
+        public void SendTeamListSend(List<Team> teams)
         {
             // Call the broadcastMessage method to update clients.            
             string fromUser;
@@ -91,7 +102,7 @@ namespace rsc2016Quiz.SignalR
             // Call the broadcastMessage method to update clients.            
             string fromUser;
             FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
-            Clients.All.broadcastMessage(message);
+            Clients.All.broadcastMessage(new ChatMessage() { UserName = userName, Message = "Pepeppe" });
         }
 
         public void SendNextQuestion(Question question)
@@ -121,6 +132,7 @@ namespace rsc2016Quiz.SignalR
 public class ChatMessage
 {
     public string UserName { get; set; }
+    public User user { get; set; }
     public string Message { get; set; }
 }
 

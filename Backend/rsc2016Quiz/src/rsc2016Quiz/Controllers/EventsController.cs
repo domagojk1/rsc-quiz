@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +7,6 @@ using rsc2016Quiz.Dtos;
 using rsc2016Quiz.Models;
 using rsc2016Quiz.Repository;
 using rsc2016Quiz.SignalR;
-using Microsoft.AspNetCore.SignalR.Hubs;
 using rsc2016Quiz.Helpers;
 using rsc2016Quiz.Helpers.ResultModels;
 
@@ -54,7 +50,7 @@ namespace rsc2016Quiz.Controllers
             quiz.UserId = user.Result.Id;
             _eventRepository.Add(Mapper.Map<Event>(quiz));
             var events = _eventRepository.GetAllEvents();
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.sendQuizList(events);
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.SendQuizList(events);
             return Ok(new MessageDto("Successfull"));
         }
 
@@ -75,7 +71,6 @@ namespace rsc2016Quiz.Controllers
             if (evt != null)
             {
                 _eventRepository.CloseEvent(id);
-                _connectionManager.GetHubContext<PostsHub>().Clients.All.startQuiz("Quiz has started");
                 _connectionManager.GetHubContext<PostsHub>().Clients.All.StartQuiz("Quiz has started");
                 return Ok(evt);
             }
@@ -111,6 +106,29 @@ namespace rsc2016Quiz.Controllers
                 return Ok(Mapper.Map<EventDto>(result));
             }
             return BadRequest(_apiErrorHandler.GenerateErrorDto(new ErrorList("Team with that id doesnt exist")));
+        }
+
+        [HttpGet("hola")]
+        public IActionResult Goto()
+        {
+            User user = new User();
+            user.Id = "dasdas";
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.Send(user);
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.send("Quiz has started2");
+            Startup.ConnectionManager.GetHubContext<PostsHub>().Clients.All.startQuiz("Quiz has started");
+            Startup.ConnectionManager.GetHubContext<PostsHub>().Clients.All.StartQuiz("Quiz has started");
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.StartQuiz("Quiz has started");
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.StartQuiz("Quiz has started");
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.SendTeamListSend(null);
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.sendTeamListSend(null);
+            Startup.ConnectionManager.GetHubContext<PostsHub>().Clients.All.SendTeamListSend(null);
+
+            List<Event> evenList = new List<Event>();
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.SendQuizList(evenList);
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.SendQuizList(null);
+
+
+            return Ok();
         }
     }
 }

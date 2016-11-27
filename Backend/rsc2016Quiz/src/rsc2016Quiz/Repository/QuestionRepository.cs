@@ -30,15 +30,7 @@ namespace rsc2016Quiz.Repository
         public Question GenerateQuestion(int eventId)
         {
             var question = _context.Questions.ToList().First();
-            var eventQuestion = new EventQuestion()
-            {
-                EventId = eventId,
-                QuestionId = question.Id
-            };
-            _context.EventQuestions.Add(eventQuestion);
-            Commit();
-
-            return GetQuestionId(question.Id);
+            return question;
 
         }
 
