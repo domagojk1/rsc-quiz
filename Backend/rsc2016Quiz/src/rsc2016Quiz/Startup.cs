@@ -107,6 +107,7 @@ namespace rsc2016Quiz
             services.AddScoped<IEncryptionService, EncryptionService>();
             services.AddScoped<IApiErrorHandler, ApiErrorHandler>();
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddTransient<IConnectionManager, ConnectionManager>();
             
 

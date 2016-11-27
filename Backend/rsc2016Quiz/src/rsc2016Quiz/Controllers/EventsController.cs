@@ -49,6 +49,8 @@ namespace rsc2016Quiz.Controllers
             var user = _userRepository.GetUserByEmail(userName);
             quiz.UserId = user.Result.Id;
             _eventRepository.Add(Mapper.Map<Event>(quiz));
+            var events = _eventRepository.GetAllEvents();
+            _connectionManager.GetHubContext<PostsHub>().Clients.All.sendQuizList(events);
             return Ok(new MessageDto("Successfull"));
         }
 
@@ -56,15 +58,15 @@ namespace rsc2016Quiz.Controllers
         public IActionResult AddMessage()
         {
             Post post = new Post();
-            post.UserName = "nekwj";
-            post.Text = "josnekej";
             
-            Startup.ConnectionManager.GetHubContext<PostsHub>().Clients.All.send("post");
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.broadcastMessage("post");
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.BroadcastMessage("post2");
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.publishPost("nekaj");
-            _connectionManager.GetHubContext<PostsHub>().Clients.All.send("post");
             return Ok(_connectionManager.GetHubContext<PostsHub>().Clients.All);
+        }
+
+        [HttpGet("")]
+        public IActionResult GetAllEvents()
+        {
+            var result = _eventRepository.GetAllEvents();
+            return Ok(Mapper.Map<List<Event>>(result));
         }
     }
 }

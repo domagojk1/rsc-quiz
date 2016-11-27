@@ -1,6 +1,8 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using rsc2016Quiz.Models;
 
 namespace rsc2016Quiz.SignalR
 {
@@ -8,7 +10,10 @@ namespace rsc2016Quiz.SignalR
     {
         private string userName = "";
         private static ConcurrentDictionary<string, string> FromUsers = new ConcurrentDictionary<string, string>();         // <connectionId, userName>
-        private static ConcurrentDictionary<string, string> ToUsers = new ConcurrentDictionary<string, string>();           // <userName, connectionId>
+        private static ConcurrentDictionary<string, string> ToUsers = new ConcurrentDictionary<string, string>();  
+        // <userName, connectionId>
+
+
         public override Task OnConnected()
         {
             DoConnect();
@@ -42,6 +47,7 @@ namespace rsc2016Quiz.SignalR
             return base.OnReconnected();
         }
 
+        
         private void DoConnect()
         {
             userName = Context.Request.Headers["User-Name"];
@@ -64,13 +70,38 @@ namespace rsc2016Quiz.SignalR
         }
 
 
-        public void Send(string message)
+        public void SendQuizList(List<Event> events)
+        {
+            // Call the broadcastMessage method to update clients.            
+            string fromUser;
+            FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
+            Clients.All.broadcastMessage(events);
+        }
+
+        public void SendTeamListSend(string message)
         {
             // Call the broadcastMessage method to update clients.            
             string fromUser;
             FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
             Clients.All.broadcastMessage(new ChatMessage() { UserName = fromUser, Message = message });
         }
+
+        public void StartQuiz(string message)
+        {
+            // Call the broadcastMessage method to update clients.            
+            string fromUser;
+            FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
+            Clients.All.broadcastMessage(new ChatMessage() { UserName = fromUser, Message = message });
+        }
+
+        public void SendNextQuestion(string message)
+        {
+            // Call the broadcastMessage method to update clients.            
+            string fromUser;
+            FromUsers.TryGetValue(Context.ConnectionId, out fromUser);
+            Clients.All.broadcastMessage(new ChatMessage() { UserName = fromUser, Message = message });
+        }
+
 
         public void SendChatMessage(string to, string message)
         {

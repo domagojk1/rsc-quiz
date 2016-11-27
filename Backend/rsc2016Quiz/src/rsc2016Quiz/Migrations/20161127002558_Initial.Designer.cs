@@ -8,8 +8,8 @@ using rsc2016Quiz.Models;
 namespace rsc2016Quiz.Migrations
 {
     [DbContext(typeof(RscContext))]
-    [Migration("20161126184256_AnswerCorretValue")]
-    partial class AnswerCorretValue
+    [Migration("20161127002558_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -147,11 +147,16 @@ namespace rsc2016Quiz.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateTime");
+                    b.Property<string>("DateTime")
+                        .IsRequired();
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("IsOpen");
+
                     b.Property<int>("MaxMemberPerTeam");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("Place")
                         .IsRequired();
@@ -179,27 +184,24 @@ namespace rsc2016Quiz.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("rsc2016Quiz.Models.QuestionEvent", b =>
-                {
-                    b.Property<int>("QuestionId");
-
-                    b.Property<int>("EventId");
-
-                    b.HasKey("QuestionId", "EventId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("QuestionEvents");
-                });
-
             modelBuilder.Entity("rsc2016Quiz.Models.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("EventId");
+
+                    b.Property<bool>("IsWinner");
+
+                    b.Property<string>("Name");
+
                     b.Property<string>("Password");
 
+                    b.Property<int>("Score");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EventId");
 
                     b.ToTable("Teams");
                 });
@@ -255,6 +257,8 @@ namespace rsc2016Quiz.Migrations
 
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<int?>("TeamId");
+
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -268,6 +272,8 @@ namespace rsc2016Quiz.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -324,16 +330,11 @@ namespace rsc2016Quiz.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("rsc2016Quiz.Models.QuestionEvent", b =>
+            modelBuilder.Entity("rsc2016Quiz.Models.Team", b =>
                 {
                     b.HasOne("rsc2016Quiz.Models.Event", "Event")
-                        .WithMany("QuestionEvents")
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("rsc2016Quiz.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
+                        .WithMany("Teams")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -348,6 +349,13 @@ namespace rsc2016Quiz.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("rsc2016Quiz.Models.User", b =>
+                {
+                    b.HasOne("rsc2016Quiz.Models.Team")
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("TeamId");
                 });
         }
     }

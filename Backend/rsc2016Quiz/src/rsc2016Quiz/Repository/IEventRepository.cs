@@ -7,5 +7,7 @@ namespace rsc2016Quiz.Repository
     {
         void Add(Event quiz);
         List<Event> GetEventsForUser(string userId);
+        List<Event> GetAllEvents();
+        Event GetEventById(int id);
     }
 }

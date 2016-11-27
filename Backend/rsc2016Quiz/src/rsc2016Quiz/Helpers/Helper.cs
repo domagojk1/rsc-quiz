@@ -16,5 +16,11 @@ namespace rsc2016Quiz.Helpers
             Random rnd = new Random();
             return rnd.Next(1, maxNumber);
         }
+
+        public static int GenRandomPassword()
+        {
+            Random rnd = new Random();
+            return rnd.Next(1000, 10000);
+        }
     }
 }
